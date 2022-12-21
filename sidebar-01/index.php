@@ -37,7 +37,7 @@
 	            </ul>
 	          </li>
           <li>  
-	              <a href="#">About</a>
+	              <a href="leavestatus.php">Leave Managment</a>
 	          </li>
 	          <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Academic</a>

@@ -22,6 +22,7 @@ $url_query = $_GET['id'];
 
  $sql = "SELECT * from tbl_staff where tname ='$url_query'";
  $result = $conn->query($sql);
+
  ?>
 <html>
     <head>
@@ -200,6 +201,7 @@ body {margin:0;font-family:Arial}
  if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
+
  ?>
 </style>
 <body style="background-image: linear-gradient( rgb(198, 201, 202),rgb(50, 147, 166));">
@@ -268,6 +270,23 @@ body {margin:0;font-family:Arial}
                               <div style="float:right;"> <?php echo $row['tqual'] ?></div>
                           </div>
                         </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                          <div class="form-group">
+                              <label for="website">Subjects Taken </label>
+                              <?php 
+                               $s = "SELECT tid from tbl_staff where tname ='$url_query'";
+                               $r = $conn->query($s);
+                             
+                              while($row1 = $result2->fetch_assoc()){
+                              // $a=$row['tid'];
+                              // sql2="SELECT rsub_id from";
+                              $sql1 = "SELECT tblreg.rsubname subnm from tbl_teahersubmap tbsup join tbl_regsup tblreg on(tblreg.rsub_id = tbsup.rsub_id) where ";
+                              $result2 = $conn->query($sql1);
+                              }
+                               ?>
+                              <div style="float:right;"> <?php echo $row['tqual'] ?></div>
+                          </div>
+                        </div>
 
                         
                     </div>
@@ -279,6 +298,10 @@ body {margin:0;font-family:Arial}
                             </div>
                         </div>
                     </div>
+
+                    <php 
+                    
+                    ?>
                    </form>
           </div>
         </div>
@@ -293,4 +316,4 @@ body {margin:0;font-family:Arial}
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
-</html>
+</html>6

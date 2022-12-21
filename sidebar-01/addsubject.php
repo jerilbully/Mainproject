@@ -32,7 +32,7 @@ if ($conn->connect_error) {
 <body>
  
     <div class="container">
-        <form action="addsubjectfunction.php" method="post" id="form1">
+        <form action="subjectmap.php" method="post" id="form1">
             <h2 class="text-center">Add A Subject</h2>
         <div class="row jumbotron">
             
@@ -44,7 +44,7 @@ if ($conn->connect_error) {
             <div class="col-sm-6 form-group">
                 
                 <label for="staff">Subject</label>
-										<select name="subjectname" class="form-control">
+										<select name="subject" class="form-control">
 											
 											<?php
 											$query="SELECT  * from tbl_regsub";
@@ -63,7 +63,7 @@ if ($conn->connect_error) {
             <div class="col-sm-6 form-group">
                 
                 <label for="staff">staff:</label>
-										<select name="course_code" class="form-control">
+										<select name="teacher" class="form-control">
 											
 											<?php
 											$query="SELECT  * from tbl_staff";

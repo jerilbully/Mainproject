@@ -1,6 +1,6 @@
 <?php
  session_start();
- require_once "connection.php";
+ require_once "sidebar-01\connection.php";
  $msg = "";
  $role="";
  if(isset($_POST["btn"]))

@@ -241,8 +241,7 @@ body {margin:0;font-family:Arial}
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <h6 class="mb-2 text-primary">Personal Details</h6>
                     </div>
-                    <form action="savestudentchange.php+
-                     method="post">
+                    <form action="savestudentchange.php" method="post">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                           <label for="website">Email: </label>  <input type="text" id="form_email" name="email" required  style="float:right;" value =" <?php  echo $row['semail'] ?>">

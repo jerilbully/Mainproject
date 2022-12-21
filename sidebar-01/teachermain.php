@@ -73,7 +73,7 @@ $result = $conn->query($sql);
               </ul>
 	          </li>
 	          <li>
-              <a href="#">test</a>
+              <a href="teacherleave.php?id=<?php   echo $_SESSION['LoginUser'];?> `">Leave</a>
 	          </li>
 	          <li>
               <a href="#">test</a>

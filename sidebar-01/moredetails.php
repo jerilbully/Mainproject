@@ -268,6 +268,12 @@ body {margin:0;font-family:Arial}
                               <div style="float:right;"> <?php echo $row['tqual'] ?></div>
                           </div>
                         </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                          <div class="form-group">
+                              <label for="website">Assigned Subjects   </label>
+                              <div style="float:right;"> <?php echo $row['tqual'] ?></div>
+                          </div>
+                        </div>
 
                         
                     </div>

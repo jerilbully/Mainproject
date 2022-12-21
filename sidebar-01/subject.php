@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-		
+		<link rel="stylesheet" href="table.css"> 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
   </head>
@@ -103,7 +103,63 @@
 
         <h2 class="mb-4">Subject Details</h2>
         <button class="button1" ><a style="color:red;" href="addsubject.php"> ADD Subject</a></button>
-  
+        <?php
+$servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "super_academy";
+ 
+ // Create connection
+$conn = new mysqli($servername,
+    $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: "
+        . $conn->connect_error);
+}
+ 
+ ?>
+ <br> <br> <br>
+ <table style="margin-left:20px;">
+
+  <tr>
+     <th>NAME</th>
+     <th>SUBJECT</th>
+     
+  </tr>
+ 
+
+    <?php
+    $sql = "SELECT * from tbl_teahersubmap";
+    $result = $conn->query($sql);
+    while($row = $result->fetch_assoc())
+    {
+   
+     $a=$row['tid'];
+     $b=$row['rsub_id'];
+     $sql1="SELECT tname from tbl_staff where tid='$a'";
+     $sql2="SELECT rsubname from tbl_regsub where rsub_id='$b'";
+     $result1 = $conn->query($sql1);
+     $result2 = $conn->query($sql2);
+     $row1 = $result1->fetch_assoc();
+     $row2 = $result2->fetch_assoc();
+     echo "  <tr><td>".$row1['tname']."</td>
+     <td>".$row2['rsubname']."</td> </tr>";
+      
+    }
+    
+    ?>
+
+ 
+ <?php
+
+    ?>
+
+</table>
+
+<?php mysqli_close($conn);  // close connection ?>
+ 
       </div>
 		</div>
 
