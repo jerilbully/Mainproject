@@ -53,12 +53,21 @@
                 </li>
               </ul>
 	          </li>
-	          <li>
-              <a href="#">test</a>
+            <li>
+              <a href="#attendance" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Attendance</a>
+              <ul class="collapse list-unstyled" id="attendance">
+                <li>
+                    <a href="teacher/takeattendenceplus2.php">Teacher Attendance</a>
+                </li>
+                <li>
+                    <a href="#">Page 2</a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+              </ul>
 	          </li>
-	          <li>
-              <a href="#">test</a>
-	          </li>
+	          
 	        </ul>
 
 	        <div class="footer">

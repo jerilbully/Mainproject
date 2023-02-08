@@ -7,8 +7,19 @@
     
     <title>Smart Academy</title>
     <link rel="stylesheet" href="indexstyle.css">
+    <script>
+        (function(d, m){
+            var kommunicateSettings = 
+                {"appId":"2ad9bba39ab21b3a701e2c56b2f04b953","popupWidget":true,"automaticChatOpenOnNavigation":true};
+            var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+            s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+            var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+            window.kommunicate = m; m._globals = kommunicateSettings;
+        })(document, window.kommunicate || {});
+    </script>
 </head>
 <body>
+    
     <div class="main">
 
         <div class="icon">
@@ -34,6 +45,7 @@
                EXTRA TEXT
             </p>
         </div>
+        <script src="sidebar-01\js\script.js"></script>
     </div>
 </body>
 </html>
