@@ -46,7 +46,7 @@
                     <a href="subject.php">Subject</a>
                 </li>
                 <li>
-                    <a href="#">Page 2</a>
+                    <a href="schedule\index.php">academic calender</a>
                 </li>
                 <li>
                     <a href="#">Page 3</a>

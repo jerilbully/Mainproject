@@ -13,7 +13,7 @@ if($con===false){
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="../teacher.php">
+        <a class="nav-link" href="../index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Back</span></a>
       </li> 
@@ -34,6 +34,7 @@ if($con===false){
          
             <a class="collapse-item" href="takeAttendance.php">Take Attendance</a>
             <a class="collapse-item" href="viewAttendance.php">View Class Attendance</a>
+            <a class="collapse-item" href="editAttendance.php">Edit Class Attendance</a>
             <!-- #################################### -->
              <form action="Includes\pdf.php" method="POST">
               <button type="submit" name="btn_pdf" >Today's Report </buttton>

@@ -1,7 +1,8 @@
 
 <?php 
 error_reporting(0);
-include 'Includes/dbcon.php';
+include '../connection.php';
+
 // include 'Includes/session.php';
 
 
@@ -38,10 +39,10 @@ include 'Includes/dbcon.php';
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">View Plus 1 Attendance</h1>
+            <h1 class="h3 mb-0 text-gray-800">Teachers Attendance</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">View Class Attendance</li>
+              <li class="breadcrumb-item active" aria-current="page">View Attendance</li>
             </ol>
           </div>
 
@@ -50,7 +51,7 @@ include 'Includes/dbcon.php';
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">View Class Attendance</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">View  Attendance</h6>
                     <?php echo $statusMsg; ?>
                 </div>
                 <div class="card-body">
@@ -66,7 +67,7 @@ include 'Includes/dbcon.php';
                         </div> -->
                     </div>
                     <button type="submit" name="view" class="btn btn-primary">View Attendance</button>
-                    <a class="btn btn-primary" href="viewplus2.php"> View plus 2 Attendance</a>
+                    <!-- <a class="btn btn-primary" href="viewplus2.php"> View plus 2 Attendance</a> -->
                   </form>
                 </div>
               </div>
@@ -82,10 +83,10 @@ include 'Includes/dbcon.php';
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Name</th>
+                        <th>Phone No</th>
                         <th>Email</th>
-                        <th>Batch</th>
+                        
                         <th>status</th>
                         
                       </tr>
@@ -148,7 +149,7 @@ include 'Includes/dbcon.php';
 
                       /*Next Code  */
 
-                      $query = "SELECT `firstname`, `lastname`, `email`,`batch`,`status`  FROM `attendancetable` WHERE `dateTimeTaken` = '$dateTaken' and batch = 'plus 1'";
+                      $query = "SELECT `name`, `phoneno`, `email`,`status`  FROM `tbl_attendance` WHERE `date` = '$dateTaken' ";
                       $rs = $conn->query($query);
                       $num = $rs->num_rows;
                       if($num > 0)
@@ -158,11 +159,9 @@ include 'Includes/dbcon.php';
                              
                             echo"
                               <tr>
-                               
-                                <td>".$rows['firstname']."</td>
-                                <td>".$rows['lastname']."</td>
+                                <td>".$rows['name']."</td>
+                                <td>".$rows['phoneno']."</td>
                                 <td>".$rows['email']."</td>
-                                <td>".$rows['batch']."</td>
                                 <td>".$rows['status']."</td>
                               </tr>";
                           }

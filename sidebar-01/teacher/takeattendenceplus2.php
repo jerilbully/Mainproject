@@ -100,16 +100,19 @@ $sql2=mysqli_query($conn,"SELECT `tname`,`tphoneno`,`temail` FROM `tbl_staff`") 
                                 $emailid=$row['temail'];
                                 $status="Present";
                                 $dateTaken = date("Y-m-d");
-                                $result2=mysqli_query($conn,"INSERT INTO `tbl_attendance`(`name`, `phoneno`, `email`,`status`, `date`) VALUES ('$name','$phoneno','$emailid','$status','$dateTaken')");
-                                if($result2)
-                                {
-                                  
-                                }
                               
-                                
+                                // $query = "SELECT * FROM `tbl_attendance` WHERE `date` = '$dateTaken'";
+                                // $dateresult = $conn->query($query);
+                                // $num = $dateresult->num_rows;
+                                // if ($num > 0) {
+                                //  echo "<script>alert('Cannot Insert Again Today')</script>";
+                                //  header("Location:takeattendenceplus2.php");
+                                // } 
+                                // else {
+                                $result2=mysqli_query($conn,"INSERT INTO `tbl_attendance`(`name`, `phoneno`, `email`,`status`, `date`) VALUES ('$name','$phoneno','$emailid','$status','$dateTaken')");             
                        }   
-}
-                    
+                        // }
+}                    
 
 ?>
 

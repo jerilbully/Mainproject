@@ -62,7 +62,7 @@ $result = $conn->query($sql);
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Academic</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="#">Page 1</a>
+                    <a href="schedule\viewschedule.php">Academic Calender</a>
                 </li>
                 <li>
                     <a href="#">Page 2</a>
