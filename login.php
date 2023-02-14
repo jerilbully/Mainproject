@@ -100,11 +100,13 @@ $msg = "<div class='alert alert-danger'>Invalid credentials</div>";
 <html lang="zxx">
 
 <head>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://codepen.io/skjha5993/pen/bXqWpR.css">
+   
     <title>Smart Academy</title>
     <style>
       .border{
@@ -113,6 +115,17 @@ $msg = "<div class='alert alert-danger'>Invalid credentials</div>";
     </style>
 </head>
 <body>
+  <style>
+    .error_form
+{
+top: 12px;
+color: rgb(216, 15, 15);
+    font-size: 15px;
+font-weight:bold;
+    font-family: Helvetica;
+}
+</style>
+  
 <center>
 
 <div class="alert">
@@ -130,7 +143,7 @@ $msg = "<div class='alert alert-danger'>Invalid credentials</div>";
 	<?php echo $msg; ?>
     <form action="log.php" method="post" >
             <h2 class="text-center">Welcome to Smart Academy</h2>
-        <div class="border" >
+        <div id="google_element" class="border" >
             <div class="col-sm-6 form-group">
               
                 <input type="text" class="form-control" name="uname" id="name-f" placeholder="username" required>
@@ -141,10 +154,13 @@ $msg = "<div class='alert alert-danger'>Invalid credentials</div>";
               
                 <input type="password" class="form-control" name="password" id="name-l" placeholder="password" required>
             </div>
+            <span class="error_form" id="captcha_message"></span>
+
+            <div class="g-recaptcha" data-sitekey="6Le1c3ckAAAAACMuBhvVifpLH5xrGBvj4oREAmww"></div>
             
             <div class="col-sm-12">
               <p>Dont have account? <a href="register.php">Register here</a>.
-
+              
             <div class="col-sm-6 form-group mb-0">
               <center>
               <input type="submit" name="btn" id="submit" value="LOGIN">
@@ -154,12 +170,40 @@ $msg = "<div class='alert alert-danger'>Invalid credentials</div>";
             </div>
             
         </div>
+        <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+                <script >
+                    function loadGoogleTranslate(){
+                       new google.translate.TranslateElement("google_element");
+                    }
+                </script>
       </div>
         </form>
     </div>
   </center>
 
+  <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
+<script type="text/javascript">
+ 
+  $(document).on('click','#submit',function()
+  {  $("#captcha_message").hide();
+ var response = grecaptcha.getResponse();
+ if(response.length == 0)
+ {
+ $("#captcha_message").html("Please verify you are not a robot");
+               $("#captcha_message").show();
+ return false;
+ }
+ else{
+ $("#captcha_message").hide();
+ return true;
+ }
+  });
+ 
+ 
+</script>
 </body>
 
 </html>

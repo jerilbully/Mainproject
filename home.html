@@ -26,13 +26,19 @@
             <img class="logo" src="logo.png" alt="College Management" height="100" width="500"> <br><br>
         </div>
        
-        <div class="navigation">
-            <div class="menu">
+        <div  class="navigation">
+            <div id="google_element" class="menu">
                 <ul>
                     <li><a href="login.php">LOGIN</a></li>
                     <li><a href="#">CONTACT</a></li>
                     <li><a href="">KNOW MORE</a></li>
                 </ul>
+                <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+                <script >
+                    function loadGoogleTranslate(){
+                       new google.translate.TranslateElement("google_element");
+                    }
+                </script>
             </div>
         </div>
         
@@ -41,9 +47,9 @@
                 TO TRANSFORM ORDINARY TO <br>  EXTRAORDINARY...
             </p>
            
-            <p class="desc">
+            <!-- <p class="desc">
                EXTRA TEXT
-            </p>
+            </p> -->
         </div>
         <script src="sidebar-01\js\script.js"></script>
     </div>

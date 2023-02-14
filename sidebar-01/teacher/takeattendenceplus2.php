@@ -92,6 +92,15 @@ include '../connection.php';
 
 if(isset($_POST['save']))
 {
+  $datecur= date("Y-m-d");
+  $query = "SELECT * FROM `tbl_attendance` WHERE `date` = '$datecur'";
+  $dateresult = $conn->query($query);
+  $num = $dateresult->num_rows;
+  if ($num > 0) {
+   echo "<script>alert('Cannot Insert Again Today')</script>";
+   header("Location:takeattendenceplus2.php");
+  }
+  else { 
 $sql2=mysqli_query($conn,"SELECT `tname`,`tphoneno`,`temail` FROM `tbl_staff`") ;
                         while ($row = mysqli_fetch_array($sql2)) 
                         {
@@ -101,17 +110,12 @@ $sql2=mysqli_query($conn,"SELECT `tname`,`tphoneno`,`temail` FROM `tbl_staff`") 
                                 $status="Present";
                                 $dateTaken = date("Y-m-d");
                               
-                                // $query = "SELECT * FROM `tbl_attendance` WHERE `date` = '$dateTaken'";
-                                // $dateresult = $conn->query($query);
-                                // $num = $dateresult->num_rows;
-                                // if ($num > 0) {
-                                //  echo "<script>alert('Cannot Insert Again Today')</script>";
-                                //  header("Location:takeattendenceplus2.php");
-                                // } 
-                                // else {
+                               
+                                
                                 $result2=mysqli_query($conn,"INSERT INTO `tbl_attendance`(`name`, `phoneno`, `email`,`status`, `date`) VALUES ('$name','$phoneno','$emailid','$status','$dateTaken')");             
-                       }   
-                        // }
+                       
+                         }
+}
 }                    
 
 ?>
@@ -189,7 +193,7 @@ $sql2=mysqli_query($conn,"SELECT `tname`,`tphoneno`,`temail` FROM `tbl_staff`") 
               <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-danger">Note: <i>Click on the checkboxes besides each student to take attendance!</i></h6>
+                  <h6 class="m-0 font-weight-bold text-danger">Note: <i>Click on the checkboxes besides each teacher to take attendance!</i></h6>
                 </div>
                 <div class="table-responsive p-3">
                 <?php echo $statusMsg; ?>

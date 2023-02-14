@@ -17,7 +17,7 @@
   </head>
   <body>
 		
-		<div class="wrapper d-flex align-items-stretch">
+		<div id="google_element" class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
 		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(adminavatar.jpg);"></a>
@@ -113,6 +113,12 @@
         <h2 class="mb-4">Welcome HOD</h2>
        
       </div>
+      <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+                <script >
+                    function loadGoogleTranslate(){
+                       new google.translate.TranslateElement("google_element");
+                    }
+                </script>
 		</div>
 
     <script src="js/jquery.min.js"></script>
