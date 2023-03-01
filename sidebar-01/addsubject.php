@@ -41,60 +41,37 @@ if ($conn->connect_error) {
                 <label for="address">BatchId</label>
                 <input type="textarea" class="form-control" name="tadd" id="address" placeholder="Enter Address">
             </div> -->
-            <div class="col-sm-6 form-group">
-                
-                <label for="staff">Subject</label>
-										<select name="subject" class="form-control">
-											
-											<?php
-											$query="SELECT  * from tbl_regsub";
-											$run=mysqli_query($conn,$query);
-											while($row=mysqli_fetch_array($run)) {?>
-                                            <option value="<?php echo $row["rsubname"]; ?>">
-                                            <?php echo $row['rsubname'] ?>
-                                            </option>
-                                            <?php
-                                            }
-                                            ?>
-										</select>
-            </div>
             
            
             <div class="col-sm-6 form-group">
                 
-                <label for="staff">staff:</label>
-										<select name="teacher" class="form-control">
+                <label for="batch">BATCH</label>
+										<select name="batch" class="form-control">
 											
 											<?php
-											$query="SELECT  * from tbl_staff";
+											$query="SELECT  * from tbl_batch";
 											$run=mysqli_query($conn,$query);
 											while($row=mysqli_fetch_array($run)) {?>
-                                            <option value="<?php echo $row["tname"]; ?>">
-                                            <?php echo $row['tname'] ?>
+                                            <option value="<?php echo $row["batch_name"]; ?>">
+                                            <?php echo $row['batch_name'] ?>
                                             </option>
                                             <?php
                                             }
                                             ?>
 										</select>
             </div>
-            
-<!--              
             <div class="col-sm-6 form-group">
-                <label for="tel">Mode</label>
-                <select name="hostel" id="hostel" class="form-control" required>
-                    <option value="Dayscholar"> Dayscholar</option>
-                    <option value="Hostler">Hostler</option>
-                </select>
-            </div> --> 
-          
-            <!-- <div class="col-sm-6 form-group">
-                <label for="pass">Password</label>
-                <input type="Password" name="tpass" class="form-control" id="pass" default='1111'>
-            </div> -->
-            <!-- <div class="col-sm-6 form-group">
-                <label for="pass2">Confirm Password</label>
-                <input type="Password" name="cnf-password" class="form-control" id="pass2" placeholder="Re-enter your password." equalto="pass" ov-equalto:msg="Both passwords do not match">
-            </div> -->
+                <label for="subname">Subject Name</label>
+                <input type="text" class="form-control" name="subname" id="address" placeholder="Subject Name." required>
+            </div>
+
+            <div class="col-sm-6 form-group">
+                <label for="Semester">Semester</label>
+                <input type="text" class="form-control" name="semester" id="address" placeholder="Enter The Semester." required>
+            </div>
+            
+            
+
             <div class="col-sm-12">
               <p>Back to Home page <a href="subject.php">Click Here</a>.
 
@@ -105,22 +82,6 @@ if ($conn->connect_error) {
         </div>
         </form>
     </div>
-    <!-- <script>
-    //create new instance of the function
-    const myForm = new octaValidate('form1');
-    //listen for submit event
-    document.getElementById('form1').addEventListener('submit', function(e){
-        
-        //invoke the method
-        if(myForm.validate())
-        { 
-          //validation successful, process form data here
-        } else {
-          //validation failed
-          e.preventDefault();
-          return false;
-        }
-    })
-</script> -->
+    
 
 </body></html>

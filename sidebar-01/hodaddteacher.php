@@ -40,30 +40,17 @@
                 <label for="address">Qualification</label>
                 <input type="textarea" class="form-control" name="tqual" id="address" placeholder="Qualification" >
             </div>
-            <!-- <div class="col-sm-6 form-group">
-
-                <label for="tel">Course</label>
-                <select name="course" id="crse" class="form-control" required>
-                    <option value="Regular MCA(2 years)">Regular MCA</option>
-                    <option value="Integrated MCA(5 years)">Integrated MCA</option>
-                </select>
-            </div>
             <div class="col-sm-6 form-group">
-                <label for="tel">Mode</label>
-                <select name="hostel" id="hostel" class="form-control" required>
-                    <option value="Dayscholar"> Dayscholar</option>
-                    <option value="Hostler">Hostler</option>
-                </select>
-            </div> --> 
+                <label for="address">Subject 1</label>
+                <input type="textarea" class="form-control" name="tqual" id="address" placeholder="Qualification" >
+            </div>
+            
           
             <div class="col-sm-6 form-group">
                 <label for="pass">Password</label>
                 <input type="Password" name="tpass" class="form-control" id="pass" default='1111'>
             </div>
-            <!-- <div class="col-sm-6 form-group">
-                <label for="pass2">Confirm Password</label>
-                <input type="Password" name="cnf-password" class="form-control" id="pass2" placeholder="Re-enter your password." equalto="pass" ov-equalto:msg="Both passwords do not match">
-            </div> -->
+           
             <div class="col-sm-12">
               <p>Back to Home page <a href="hodteacher.php">Click Here</a>.
 

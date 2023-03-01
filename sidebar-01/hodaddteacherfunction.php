@@ -37,7 +37,7 @@ $sql2="SELECT log_id from tbl_login where username='$tname'";
 $result=$conn->query($sql2);
 if($result->num_rows>0)
 {
-echo "hey";
+
 foreach($result as $data)
 
 {

@@ -22,6 +22,32 @@ $url_query = $_GET['id'];
 
  $sql = "SELECT * from tab_reg where sname ='$url_query'";
  $result = $conn->query($sql);
+ if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $lid = $row['log_id']; 
+    $name=$row['sname'];
+    $email=$row['semail'];
+    $phoneno=$row['sphoneno'];
+    $address=$row['sadd'];
+    $dob=$row['sdob'];
+
+    $sql1="SELECT * from tbl_student WHERE log_id='$lid'";
+    $result1 = $conn->query($sql1);
+    $row1=$result1->fetch_assoc();
+    $bid = $row1['batch_id'];
+    
+
+    $sql2="SELECT * from tbl_batch  WHERE batch_id='$bid'";
+    $result2 = $conn->query($sql2);
+    $row2=$result2->fetch_assoc();
+    $batchname = $row2['batch_name']; 
+    
+ ?>
+
+ <?php
+  }
+}
  ?>
 <html>
     <head>
@@ -196,12 +222,13 @@ body {margin:0;font-family:Arial}
     text-align: left;
   }
 }
-<?php
- if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
- ?>
 </style>
+<?php
+//  if ($result->num_rows > 0) {
+//   // output data of each row
+//   while($row = $result->fetch_assoc()) {
+ ?>
+
 <body style="background-image: linear-gradient( rgb(198, 201, 202),rgb(50, 147, 166));">
     <h1 style="text-align:center;font-family: 'Franklin Gothic Medium', Arial Narrow, 'Arial', sans-serif;font-weight: bolder; margin-top: 5%;"> PROFILE </h1>
     <P style="color: white;text-align:center;font-weight:bold;font-size:12px;">HOME >> PROFILE</P>
@@ -216,7 +243,7 @@ body {margin:0;font-family:Arial}
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
                         </div>
                         
-                        <h5 class="user-name"><?php echo $row['sname'] ?></h5>
+                        <h5 class="user-name"><?php echo $name ?></h5>
                         <h6 class="user-email"></h6>
                     </div>
                     <div class="about">
@@ -238,34 +265,34 @@ body {margin:0;font-family:Arial}
                     <form action="" method="post">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
-                          <label for="website">Email: </label> <div style="float:right"><?php echo $row['semail'] ?></div>
+                          <label for="website">Email: </label> <div style="float:right"><?php echo $email ?></div>
                           </div>
                         </div>
                         <br>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
-                              <label for="website">Phone Number:</label> <div style="float:right;"><?php echo $row['sphoneno'] ?></div>
+                              <label for="website">Phone Number:</label> <div style="float:right;"><?php echo $phoneno ?></div>
                           </div>
                         </div>
                         <BR>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                               <label for="website">Address:     </label>
-                              <div style="float:right;"><?php echo $row['sadd'] ?></div>
+                              <div style="float:right;"><?php echo $address ?></div>
                           </div>
                         </div>`
                         
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                               <label for="website">Date Of Birth:     </label>
-                              <div style="float:right"> <?php echo $row['sdob'] ?></div>
+                              <div style="float:right"> <?php echo $dob ?></div>
                           </div>
                         </div>
                         <br>    
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
-                              <label for="website">course:     </label>
-                              <div style="float:right;"> <?php echo $row['scourse'] ?></div>
+                              <label for="website">Batch:     </label>
+                              <div style="float:right;"> <?php echo $batchname ?></div>
                           </div>
                         </div>
 
@@ -287,8 +314,8 @@ body {margin:0;font-family:Arial}
         </div>
         </div>
         <?php
- }
- }
+//  }
+//  }
     ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

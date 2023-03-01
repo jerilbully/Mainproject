@@ -56,10 +56,10 @@
             </div>
             <div class="col-md-3">
                 <div class="cardt rounded-0 shadow">
-                    <div class="card-header bg-gradient bg-primary text-light">
+                    <!-- <div class="card-header bg-gradient bg-primary text-light">
                         <h5 class="card-title">Schedule Form</h5>
-                    </div>
-                    <div class="card-body">
+                    </div> -->
+                    <!-- <div class="card-body">
                         <div class="container-fluid">
                             <form action="save_schedule.php" method="post" id="schedule-form">
                                 <input type="hidden" name="id" value="">
@@ -81,13 +81,13 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="card-footer">
+                    </div> -->
+                    <!-- <div class="card-footer">
                         <div class="text-center">
                             <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                             <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
     <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="event-details-modal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-0">
-                <div class="modal-header rounded-0">
+                                <div class="modal-header rounded-0">
                     <h5 class="modal-title">Schedule Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

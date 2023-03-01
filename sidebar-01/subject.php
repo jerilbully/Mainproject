@@ -124,40 +124,58 @@ if ($conn->connect_error) {
  <table style="margin-left:20px;">
 
   <tr>
-     <th>NAME</th>
+     <th>TEACHER NAME</th>
      <th>SUBJECT</th>
+     <th>BATCH</th>
+     <th>SEMESTER</th>
      
   </tr>
  
 
     <?php
-    $sql = "SELECT * from tbl_teahersubmap";
-    $result = $conn->query($sql);
-    while($row = $result->fetch_assoc())
-    {
-   
-     $a=$row['tid'];
-     $b=$row['rsub_id'];
-     $sql1="SELECT tname from tbl_staff where tid='$a'";
-     $sql2="SELECT rsubname from tbl_regsub where rsub_id='$b'";
-     $result1 = $conn->query($sql1);
-     $result2 = $conn->query($sql2);
-     $row1 = $result1->fetch_assoc();
-     $row2 = $result2->fetch_assoc();
-     echo "  <tr><td>".$row1['tname']."</td>
-     <td>".$row2['rsubname']."</td> </tr>";
-      
-    }
+    $sql1 = "SELECT * from tbl_subjteacher";
+    $result1 = $conn->query($sql1);
     
+    if ($result1->num_rows > 0) {
+    // output data of each row
+    while($row = $result1->fetch_assoc()) {
+      $teachid = $row['teacherid']; 
+      $subject= $row['subid']; 
+      
+      $sql2 = "SELECT * from tbl_subject where sub_id = '$subject'";
+      $result2 = $conn->query($sql2);
+      $row2 = $result2->fetch_array();
+      $subjectname = $row2['sub_name']; 
+      $batch = $row2['batch_id']; 
+      $sem = $row2['sem']; 
+
+      $sql3 = "SELECT * from tbl_staff where tid = '$teachid'";
+      $result3 = $conn->query($sql3);
+      $row3 = $result3->fetch_array();
+      $teachername = $row3['tname'];
+
+      $sql4 = "SELECT * from tbl_batch where batch_id = '$batch'";
+      $result4 = $conn->query($sql4);
+      $row4 = $result4->fetch_array();
+      $batchname = $row4['batch_name'];
+      
     ?>
 
  
- <?php
 
-    ?>
 
-</table>
-
+<tr>
+  <td><?php echo $teachername?></td>
+  <td><?php echo $subjectname?></td>
+  <td><?php echo $batchname?></td>
+  <td><?php echo $sem?></td>
+ 
+  
+</tr>
+<?php
+}
+}
+  ?>
 <?php mysqli_close($conn);  // close connection ?>
  
       </div>

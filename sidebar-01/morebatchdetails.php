@@ -18,7 +18,7 @@
   <body>
 		
 		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar">
+        <nav id="sidebar">
 				<div class="p-4 pt-5">
 		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(adminavatar.jpg);"></a>
 	        <ul class="list-unstyled components mb-5">
@@ -29,21 +29,35 @@
                     <a href="registeruser.php">Registered Users</a>
                 </li>
                 <li>
-                    <a href="#">Teachers</a>
+                    <a href="hodteacher.php">Teachers</a>
                 </li>
                 <li>
-                    <a href="#">Students</a>
+                    <a href="studentview.php">Students</a>
                 </li>
 	            </ul>
 	          </li>
-	          <li>
-	              <a href="#">About</a>
+          <li>  
+	              <a href="leavestatus.php">Leave Managment</a>
 	          </li>
 	          <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Academic</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
                     <a href="subject.php">Subject</a>
+                </li>
+                <li>
+                    <a href="schedule\index.php">academic calender</a>
+                </li>
+                <li>
+                    <a href="batchdetails.php">Batch Details</a>
+                </li>
+              </ul>
+	          </li>
+            <li>
+              <a href="#attendance" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Attendance</a>
+              <ul class="collapse list-unstyled" id="attendance">
+                <li>
+                    <a href="teacher/takeattendenceplus2.php">Teacher Attendance</a>
                 </li>
                 <li>
                     <a href="#">Page 2</a>
@@ -53,12 +67,7 @@
                 </li>
               </ul>
 	          </li>
-	          <li>
-              <a href="#">test</a>
-	          </li>
-	          <li>
-              <a href="#">test</a>
-	          </li>
+	          
 	        </ul>
 
 	        <div class="footer">
@@ -108,12 +117,9 @@
    
 
 <!-- <a href="admin_dashboard.php"><button class="button-54">Dashboard</button></a> -->
-  <h1 id="h1">Teacher Detail          </h1>
-  <button class="button1" ><a style="color:white;" href="hodaddteacher.php"> ADD Teacher</a></button>
-  <button class="button1" ><a style="color:white;" href="addmultipleteacher.php"> ADD multiple Teacher</a></button>
-  <button class="button1" ><a style="color:white;" href="classteacher.php"> Class Teacher List</a></button>
-    <?php
-    
+
+  
+<?php    
 $servername = "localhost";
     $username = "root";
     $password = "";
@@ -128,8 +134,32 @@ if ($conn->connect_error) {
     die("Connection failed: "
         . $conn->connect_error);
 }
- $sql = "SELECT * from tbl_staff";
- $result = $conn->query($sql);
+$url_query = $_GET['id'];
+
+$sql1="SELECT batch_name from tbl_batch where batch_id='$url_query'";
+$result1 = $conn->query($sql1);
+if ($result1->num_rows > 0) {
+// output data of each row
+while($row = $result1->fetch_assoc()) {
+  $bname = $row['batch_name'];
+  $_SESSION['bname']=$bname;
+}}
+
+$sql3="SELECT * from tbl_classteacher where batch_id='$url_query' ";
+$result3 = $conn->query($sql3);
+if ($result3->num_rows > 0) {
+    // output data of each row
+    while($row = $result3->fetch_assoc()) {
+      $tid = $row['tid'];
+
+    $sql4="SELECT *from tbl_staff s,tbl_classteacher c where c.tid ='$tid' and c.tid=s.tid and c.batch_id='$url_query'";
+    $result4 = $conn->query($sql4);
+    $row4 = $result4->fetch_array();
+    $tname=$row4['tname'];
+    $_SESSION['tname']=$tname;
+      ?>   
+ <?php 
+    }}
  ?>
  <br> <br> <br>
  <style>
@@ -210,52 +240,93 @@ html {
 </style>
 </head>
 <body>
-
-<!-- <h2>Responsive "Meet The Team" Section</h2>
-<p>Resize the browser window to see the effect.</p> -->
+    <div style="margin-top:-8%;margin-bottom:2%;">
+<h1 class="h1">
+        <?php
+          echo $_SESSION['bname'];
+?>
+        </h1>
 <br> 
+<h4>Teacher-in-Charge:
 <?php
- if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
- ?>
-<!-- <div class="row"> -->
-  <div class="column">
-    <div class="card">
-      <img src="teacherimage/avatar.jpg" alt="Jane" >
-      <div class="container">
-        <h2><?php echo $row['tname'] ?></h2>
-        <p class="title">Asst Professor</p>
-        <!-- <p></p> -->
-        <!-- <p><?php echo $row['temail'] ?></p> -->
-        <p><a href="moredetails.php?id=<?php echo $row['tid'] ?>">More details</a></p>
-      </div>
-    </div>
-  </div>
+          echo $_SESSION['tname'];
+?>
+</h4>
+
+<h3 style="text-align: center;">Subject</h3>
+</div>
+<table style="margin-left:20px;">
+
+<tr>
+   <th>Subject ID</th>
+   <th>Subject</th>
+   <th>Semester</th>
+   
   
+   
+</tr>
+<?php
+$sql1 = "SELECT * from tbl_subject WHERE batch_id ='$url_query' ";
+$result1 = $conn->query($sql1);
 
-  <?php
- }
- }
-    ?>
-<!-- 
-  <div class="column">
-    <div class="card">
-      <img src="teacherimage/avatar.jpg" alt="Mike">
-      <div class="container">
-        <h2>Mike Ross</h2>
-        <p class="title">Art Director</p>
-        <p>example@example.com</p>
-        <p><button class="button">Contact</button></p>
-      </div>
-    </div>
-  </div> -->
+if ($result1->num_rows > 0) {
+// output data of each row
+while($row = $result1->fetch_assoc()) {
+  $subid = $row['sub_id']; 
+  $subname= $row['sub_name']; 
+  $sem= $row['sem']; 
+
+ 
+
+
+?>
+<tr>
+<td><?php echo $subid?></td>
+<td><?php echo $subname?></td>
+<td><?php echo $sem?></td>
+
+</tr>
+<?php
+}
+}
+  ?>
+</table>
+<h3 style="text-align: center;">Student Details</h3>
+<table style="margin-left:20px;">
+
+<tr>
+   <th>Student ID</th>
+   <th>Student name</th>
+   
+   
   
+   
+</tr>
+<?php
+$sql5 = "SELECT * from tbl_student WHERE batch_id ='$url_query' ";
+$result5 = $conn->query($sql5);
+
+if ($result5->num_rows > 0) {
+// output data of each row
+while($row5 = $result5->fetch_assoc()) {
+  $studid = $row5['log_id']; 
+  
+$sql6="SELECT * from tab_reg where log_id ='$studid'";
+$result6 = $conn->query($sql6);
+  $row6 = $result6->fetch_array();
+  $sname =  $row6['sname'];
+?>
+<tr>
+<td><?php echo $studid?></td>
+<td><?php echo $sname?></td>
 
 
-
-
-
+</tr>
+<?php
+}
+}
+  ?>
+</table>
 </body>
 </html>
 

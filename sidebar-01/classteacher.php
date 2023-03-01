@@ -29,7 +29,7 @@
                     <a href="registeruser.php">Registered Users</a>
                 </li>
                 <li>
-                    <a href="hodteacher.php">Teachers</a>
+                    <a href="#">Teachers</a>
                 </li>
                 <li>
                     <a href="#">Students</a>
@@ -88,7 +88,7 @@
                     <a class="nav-link" href="index.php">HOME</a>
                 </li>  
               <li class="nav-item active">
-                    <a class="nav-link" href="/smartacademy/logout.php">LOGOUT</a>
+                    <a class="nav-link" href="/smartacademy/login.php">LOGOUT</a>
                 </li>
                 
                 <li class="nav-item">
@@ -96,7 +96,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"></a>
-                </li>  
+                </li>
               </ul>
             </div>
           </div>
@@ -108,12 +108,10 @@
    
 
 <!-- <a href="admin_dashboard.php"><button class="button-54">Dashboard</button></a> -->
-  <h1 id="h1">Users Detail</h1><br> <br>
-  <button type="submit" class="btn btn-primary" name="submit" style="background-color: #29a329; color: white;" onclick="window.location.href = 'decm_excel.php';" > Download  </button>
-<!-- <?php
-session_start();
-?>   -->
+  <h1 id="h1">Class Teacher Detail          </h1>
+  
     <?php
+    
 $servername = "localhost";
     $username = "root";
     $password = "";
@@ -128,84 +126,150 @@ if ($conn->connect_error) {
     die("Connection failed: "
         . $conn->connect_error);
 }
- $sql = "SELECT * from tab_reg WHERE sstage='1'";
+ $sql = "SELECT * from tbl_classteacher";
  $result = $conn->query($sql);
  ?>
  <br> <br> <br>
- <table style="margin-left:20px;">
+ <style>
+html {
+  box-sizing: border-box;
+}
 
-  <tr>
-     <th>NAME</th>
-     <th>EMAIL</th>
-     <th>ADDRESS</th>
-     <th>DOB</th>
-     <th>MODE</th>
-     <th>10th Mark</th>
-     <th>12th Mark</th>
-     <th colspan="2">Action</th>
-  </tr>
- <?php
- if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
- ?>
-  <tr>
-<td><?php echo $row['sname'] ?></td>
-<td><?php echo $row['semail'] ?></td>
-<td><?php echo $row['sadd'] ?></td>
-<td><?php echo $row['sdob'] ?></td> 
-<td><?php echo $row['sstay'] ?></td>
-<td><a href="documents\<?php echo $row['tenth_cer'] ?>"><?php echo $row['tenth'] ?></a></td>
-<td><a href="documents\<?php echo $row['twelth_cer'] ?>"><?php echo $row['twelth'] ?></a></td>
-<td><a href=""><button style="color:white; background-color:green; width:80px; height:30px;">
-<?php if($row['sstage']==1){
-echo "<span class='badge_active'><a href='?type=status&operation=accept&id=".$row['log_id']."' style='color:white;text-decoration:none;'>Accept</a></span>";
-}  ?>
-</button ></a>
-<!-- <a href=""><button style="color:white; background-color:green; width:80px; height:30px;">Documents</button></a> -->
-</td>
-  </tr>
- <?php
- }
- }
-    ?>
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
-</table>
-<?php
- if(isset($_GET['type']) && $_GET['type']!=''){
-  $type=($_GET['type']);
+.column {
+  float: left;
+  width: relative;  
+  margin-bottom: 8px;
+  padding: 0 8px;
+  width: 350px;
+  height: 550px;
+}
 
-  if($type=='status'){
-    $operation=($_GET['operation']);
-    $id=($_GET['id']);
-
-    if($operation=='accept'){
-      $status='0';
-    }
+@media screen and (max-width: 650px) {
+  .column {
     
-  
-    $update_status="UPDATE tab_reg set sstage='$status'where log_id='$id'";
-    mysqli_query($conn,$update_status);
-    $update_status1="UPDATE tbl_login set sstatus='$status'where log_id='$id'";
-    mysqli_query($conn,$update_status1);
-
-    $sql1="INSERT INTO `tbl_student`(`stud_id`, `log_id`, `batch_id`) VALUES ('','$id','1')";
-    mysqli_query($conn,$sql1);
-  
-
+    display: block;
   }
-  
-}        
+}
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  height:350px;
+  width:300px;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+.button1 {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 25%;
+}
+
+.button1:hover {
+  background-color: #555;
+}
+</style>
+</head>
+<body>
+
+<!-- <h2>Responsive "Meet The Team" Section</h2>
+<p>Resize the browser window to see the effect.</p> -->
+<br> 
+
+<table style="margin-left:20px;">
+
+<tr>
+   <th>BATCH</th>
+   <th>CLASS TEACHER</th>
+  
+   
+</tr>
+<?php
+$sql1 = "SELECT * from tbl_classteacher";
+$result1 = $conn->query($sql1);
+
+if ($result1->num_rows > 0) {
+// output data of each row
+while($row = $result1->fetch_assoc()) {
+  $bid = $row['batch_id']; 
+  $ctid= $row['tid']; 
+
+  $sql2 = "SELECT * from tbl_batch where batch_id = '$bid'";
+  $result2 = $conn->query($sql2);
+  $row2 = $result2->fetch_array();
+  $bname =  $row2['batch_name'];
+ 
+//   $sql3 = "SELECT * from tbl_course where course_id = '$cid'";
+//   $result3 = $conn->query($sql3);
+//   $row3 = $result3->fetch_array();
+//   $cname =  $row3['cousrename'];
+
+  $sql4 = "SELECT * from tbl_staff where tid = '$ctid'";
+  $result4 = $conn->query($sql4);
+  $row4 = $result4->fetch_array();
+  $tname =  $row4['tname'];
 
 
 ?>
+<tr>
+  <td><?php echo $bname?></td>
+  <td><?php echo $tname?></td>
+ 
+  
+</tr>
+<?php
+}
+}
+  ?>
 
-<?php mysqli_close($conn);  // close connection ?>
-<br><br>
+</table>
 
-     
-</body>    
+  
+
+
+
+
+
+</body>
+</html>
+
       </div>
 		</div>
 

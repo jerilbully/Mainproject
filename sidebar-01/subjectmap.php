@@ -1,58 +1,17 @@
+<?php include 'connection.php'?>
+
 <?php
-  
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "super_academy";
-  
-// Create connection
-$conn = new mysqli($servername, 
-    $username, $password, $dbname);
-  
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " 
-        . $conn->connect_error);
-}else{
-    echo "Connected";
-}
-
- $subject = $_REQUEST['subject'];
- $teacher = $_REQUEST['teacher'];
-                            
-
+ $subject = $_REQUEST['subname'];
+ $semester = $_REQUEST['semester'];
+ $batch = $_REQUEST['batch'];
+ $sql1="SELECT  batch_id FROM tbl_batch WHERE batch_name='$batch'";
+ $result1 = $conn->query($sql1);
+ $row1 = $result1->fetch_array();
+ $bid =  $row1['batch_id'];
+ $sql="INSERT INTO tbl_subject ( `sub_name`,`batch_id`,`sem`)VALUES('$subject',$bid,'$semester')";
  
-$result1="SELECT rsub_id FROM tbl_regsub where rsubname='$subject'";
-$a=$conn->query($result1);
-if($a->num_rows>0)
-   {
 
-foreach($a as $data)
-
-{
-
-   $rsub_id=$data['rsub_id'];
-}
-
-   }
-
-$result2="SELECT tid FROM tbl_staff where tname='$teacher'";
-$b=$conn->query($result2);
-if($b->num_rows>0)
-   {
-
-foreach($b as $data)
-
-{
-
-   $tid=$data['tid'];
-}
-
-   }
-
-
-$sql1 = "INSERT INTO tbl_teahersubmap( rsub_id,tid) VALUES ('$rsub_id','$tid')";
-if($conn->query($sql1) === TRUE)
+if($conn->query($sql) === TRUE)
 {
     echo "insertion sucessful";
 }

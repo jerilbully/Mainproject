@@ -32,7 +32,7 @@
                     <a href="hodteacher.php">Teachers</a>
                 </li>
                 <li>
-                    <a href="#">Students</a>
+                    <a href="studentview.php">Students</a>
                 </li>
 	            </ul>
 	          </li>
@@ -49,7 +49,7 @@
                     <a href="schedule\index.php">academic calender</a>
                 </li>
                 <li>
-                    <a href="#">Page 3</a>
+                    <a href="batchdetails.php">Batch Details</a>
                 </li>
               </ul>
 	          </li>

@@ -1,30 +1,12 @@
 <?php
- session_start(); 
+session_start(); 
  
- if(!isset($_SESSION["LoginUser"])){
-  header("Location:../login.php");
- }
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "super_academy";
-
-// Create connection
-$conn = new mysqli($servername, 
-  $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " 
-      . $conn->connect_error);
-}else{
-  echo "Connected";
-}
-$sql = "SELECT * from tbl_staff where tname=''" ;
-$result = $conn->query($sql);
+// if(!isset($_SESSION["LoginUser"])){
+//  header("Location:../login.php");
+// }
+include 'connection.php';
+$url_query = $_GET['id'];
 ?>
- 
 <html lang="en">
   <head>
   	<title>Smart Academy</title>
@@ -33,6 +15,8 @@ $result = $conn->query($sql);
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="table.css"> 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
   </head>
@@ -47,25 +31,25 @@ $result = $conn->query($sql);
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">USERS</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                <a href="teacherupdate.php?id=<?php   echo $_SESSION['LoginUser'];?>">Update Profile </a>
+                    <a href="studentupdate.php?id=<?php   echo $_SESSION['LoginUser'];?>">Update Profile </a>
                 </li>
+                
                 <li>
-                    <a href="#">Teachers</a>
-                </li>
-                <li>
-                    <a href="#">Students</a>
+                    <a href="#">Test</a>
                 </li>
 	            </ul>
 	          </li>
-	         
 	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Academic</a>
+	              <a href="#">About</a>
+	          </li>
+	          <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">course</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="schedule\viewschedule.php">Academic Calender</a>
+              <li>
+                    <a href="studentcourse.php">Your Course</a>
                 </li>
                 <li>
-                    <a href="material_upload\index.php">Material Upload</a>
+                    <a href="#">Page 2</a>
                 </li>
                 <li>
                     <a href="#">Page 3</a>
@@ -73,21 +57,10 @@ $result = $conn->query($sql);
               </ul>
 	          </li>
 	          <li>
-              <a href="teacherleave.php?id=<?php   echo $_SESSION['LoginUser'];?> `">Leave</a>
+              <a href="#">test</a>
 	          </li>
 	          <li>
-            <a href="#testmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tools</a>
-              <ul class="collapse list-unstyled" id="testmenu">
-                <li>
-                    <a href="OCR\index.html">OCR</a>
-                </li>
-                <li>
-                    <a href="spell-checker\index.html">Spell Checker</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-              </ul>
+              <a href="#">test</a>
 	          </li>
 	        </ul>
 
@@ -130,16 +103,59 @@ $result = $conn->query($sql);
             </div>
           </div>
         </nav>
-             
-        
 
-        <h2 class="mb-4">Welcome
-        <?php
-          echo $_SESSION['LoginUser'];
-?>
+        <h2 class="mb-4">
+            Course details
         </h2>
+        <h4  class="mb-4"><ul>
+            Your Teachers
+        </h4>
+        
+        <table style="margin-left:20px;">
+
+<tr>
+   <th>Subject</th>
+   <th>Teacher</th>
+  
+   
+</tr>
+<?php
+
+$sql = "SELECT * from tab_reg WHERE sname='$url_query'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+// output data of each row
+while($row = $result->fetch_assoc()) {
+  $id=$row['log_id'];
+
+  $sql1="SELECT * from tbl_student WHERE log_id='$lid'";
+  $result1 = $conn->query($sql1);
+  $row1=$result1->fetch_assoc();
+  $bid = $row1['batch_id'];
+
+  $sql2="SELECT * from tbl_subject WHERE batch_id ='$bid'";
+  $result2 = $conn->query($sql2);
+  $row2=$result2->fetch_assoc();
+  $subname = $row2['sub_name'];
+  $subid = $row2['sub_id'];
+
+
+?>
+<tr>
+  <td><?php echo $bname?></td>
+  <td><?php echo $tname?></td>
+ 
+  
+</tr>
+<?php
+}
+}
+  ?>
+
+</table>
        
-    </div>
+      </div>
 		</div>
 
     <script src="js/jquery.min.js"></script>

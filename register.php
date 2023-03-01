@@ -10,15 +10,14 @@ session_start();
         die();
     }
     //Load Composer's autoloader
-    require 'vendor/autoload.php';
+    // require 'vendor/autoload.php';
 
  $servername = "localhost";
   $username = "root";
   $password = "";
   $dbname = "super_academy";
  // Create connection
-$conn = new mysqli($servername, 
-    $username, $password, $dbname);
+$conn = new mysqli($servername,$username, $password, $dbname);
 	
 // Check connection
 if ($conn->connect_error) {
@@ -26,24 +25,62 @@ if ($conn->connect_error) {
         . $conn->connect_error);
 }
 
-    $msg = "";
+$msg = "";
 
-    if (isset($_POST['submit'])) {
-       $sname = $_REQUEST['Sname'];
-$admno=$_REQUEST['admno'];
+if (isset($_POST['submit'])) {
+$sname = $_REQUEST['Sname'];
 $sadd=$_REQUEST['Saddr'];
 $sdob=$_REQUEST['Sdob'];
 $sphoneno=$_REQUEST['Sphone'];
 $semail=$_REQUEST['Semail'];
 $course=$_REQUEST["course"];
 $hostel=$_REQUEST["hostel"];
+$tenth=$_REQUEST["tenth"];
+$twelth=$_REQUEST["twelth"];
+
 $role = "student";
 
 $hash = md5($_REQUEST['Spassword']);
 $spass=$hash;
-   $code=md5(rand());
+$code=md5(rand());
+
+//document upload code
+$name1 = $_FILES['profile_img']['name'];
+        $temp1 = $_FILES['profile_img']['tmp_name'];
+    
+        $location="sidebar-01/documents";
+        $image1=$location.$name1;
+
+        $target_dir="sidebar-01/documents";
+        $finalImage1=$target_dir.$name1;
+
+        move_uploaded_file($temp1,$finalImage1);
+        
+        $name2 = $_FILES['tenth_cer']['name'];
+        $temp2 = $_FILES['tenth_cer']['tmp_name'];
+    
+        $location="sidebar-01/documents";
+        $image1=$location.$name1;
+
+        $target_dir="sidebar-01/documents";
+        $finalImage1=$target_dir.$name1;
+
+        move_uploaded_file($temp1,$finalImage1);
+
+        $name3 = $_FILES['twelth_cer']['name'];
+        $temp3 = $_FILES['twelth_cer']['tmp_name'];
+    
+        $location="sidebar-01/documents";
+        $image1=$location.$name1;
+
+        $target_dir="sidebar-01/documents";
+        $finalImage1=$target_dir.$name1;
+
+        move_uploaded_file($temp1,$finalImage1);
+
+
         if (mysqli_num_rows(mysqli_query($conn, "SELECT semail FROM tab_reg WHERE semail='{$semail}'")) > 0) {
-            $msg = "<div class='alert alert-danger'>{$email} - This email address has been already exists.</div>";
+            $msg = "<div class='alert alert-danger'>{$semail} - This email address has been already exists.</div>";
         } 
 		
 		else if (mysqli_num_rows(mysqli_query($conn, "SELECT semail FROM tab_reg WHERE sphoneno='{$sphoneno}'")) > 0) {
@@ -52,7 +89,7 @@ $spass=$hash;
 		
 		
 		else {
-               $sql="INSERT INTO tbl_login( log_id,username,password,role,code) VALUES ('','$sname','$spass','$role','$code')";
+               $sql="INSERT INTO tbl_login( log_id,username,password,role,code,sstatus) VALUES ('','$sname','$spass','$role','$code','1')";
 				$result = mysqli_query($conn, $sql);
 
                 if ($result) {
@@ -62,7 +99,8 @@ $spass=$hash;
 						{
 					$log_id=$data['log_id'];
 						}
-					    $sql2= "INSERT INTO tab_reg VALUES ('','$log_id','$sname','$admno','$sadd','$sdob','$sphoneno','$semail','$course','$hostel','$spass','')";
+					    $sql2= "INSERT INTO `tab_reg`(`stud_id`, `log_id`, `sname`, `sadd`, `sdob`, `sphoneno`, `semail`, `scourse`, `tenth_cer`, `twelth_cer`, `profile_img`, `twelth`, `tenth`, `sstay`, `spass`, `sstage`) VALUES 
+                        ('','$log_id','$sname','$sadd','$sdob','$sphoneno','$semail','$course','$name2','$name3','$name1','$twelth','$tenth','$hostel','$spass','1')";
 					   $result2 = mysqli_query($conn, $sql2);
 					}
                     echo "<div style='display: none;'>";
@@ -117,7 +155,7 @@ $spass=$hash;
  
     <div class="container">
 	   <?php echo $msg; ?>
-        <form action="#" method="POST" id="form1">
+        <form enctype="multipart/form-data" action="#" method="POST" id="form1">
             <h2 class="text-center">Join Smart Academy</h2>
         <div class="row jumbotron">
             <div class="col-sm-6 form-group">
@@ -125,11 +163,7 @@ $spass=$hash;
                 <input type="text" class="form-control" name="Sname" id="form_fname" placeholder="Enter your full name." >
                 <span class="error_form" id="fname_error_message"></span>
             </div>
-            <div class="col-sm-6 form-group">
-                <label for="admno">Admission Number</label>
-                <input type="text" name="admno" class="form-control"  placeholder="Enter Admission Number" >
-               
-            </div>
+            
             <div class="col-sm-6 form-group">
                 <label for="address">Address</label>
                 <input type="address" class="form-control" name="Saddr" id="address" placeholder="Locality/House/Street no." required>
@@ -146,18 +180,50 @@ $spass=$hash;
                 <span class="error_form" id="pno_error_message"></span>
             </div>
             
-            
             <div class="col-sm-6 form-group">
                 <label for="Date">Date Of Birth</label>
                 <input type="Date" name="Sdob" class="form-control" id="Date" placeholder="" required min='1899-01-01' max='2008-01-01'>
             </div>
+
+            <div class="col-sm-6 form-group">
+                <label for="Date">Profile Image</label>
+                <input type="file" name="profile_img" class="form-control" id="Date" placeholder="" required min='1899-01-01' max='2008-01-01'>
+            </div>
+            
+            <div class="col-sm-6 form-group">
+                <label for="tenth">10th Mark</label>
+                <input type="address" class="form-control" name="tenth" id="address" placeholder="Enter 10th Percentage" required>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="tenth">10th certificate</label>
+                <input type="file" class="form-control" name="tenth_cer" id="address" placeholder="Enter 10th Percentage" required>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="twelth">12th Mark</label>
+                <input type="address" class="form-control" name="twelth" id="address" placeholder="Enter 12th Percentage" required>
+            </div>
+
+            <div class="col-sm-6 form-group">
+                <label for="tenth">12th certificate</label>
+                <input type="file" class="form-control" name="twelth_cer" id="address" placeholder="Enter 10th Percentage" required>
+            </div>
             <div class="col-sm-6 form-group">
                 <label for="tel">Course</label>
-                <select name="course" id="crse" class="form-control" required>
-                    <option value="Regular MCA(2 years)">Regular MCA</option>
-                    <option value="Integrated MCA(5 years)">Integrated MCA</option>
-                </select>
+                <select name="course" class="form-control">
+											
+											<?php
+											$query="SELECT  * from tbl_course";
+											$run=mysqli_query($conn,$query);
+											while($row=mysqli_fetch_array($run)) {?>
+                                            <option value="<?php echo $row["cousrename"]; ?>">
+                                            <?php echo $row['cousrename'] ?>
+                                            </option>
+                                            <?php
+                                            }
+                                            ?>
+										</select>
             </div>
+            
             <div class="col-sm-6 form-group">
                 <label for="tel">Mode</label>
                 <select name="hostel" id="hostel" class="form-control" required>

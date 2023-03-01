@@ -18,10 +18,25 @@ if ($conn->connect_error) {
 }
 
 $url_query = $_GET['id'];
+$sql = "SELECT * from tbl_staff where tid ='$url_query'";
+$result = $conn->query($sql);
 
 
- $sql = "SELECT * from tbl_staff where tid ='$url_query'";
- $result = $conn->query($sql);
+$sql1= "SELECT subid FROM tbl_subjteacher where teacherid='$url_query'";
+$result1 = $conn->query($sql1);
+$row1 = $result1->fetch_array();
+if(mysqli_num_rows($result1)>0)
+{
+$subid =  $row1['subid'];
+
+$sql2= "SELECT sub_name FROM tbl_subject where sub_id='$subid'";
+$result2 = $conn->query($sql2);
+$row2 = $result2->fetch_array();
+$_SESSION['subname'] =  $row2['sub_name'];
+}
+else
+$_SESSION['subname']="no subject assigned";
+
  ?>
 <html>
     <head>
@@ -271,7 +286,7 @@ body {margin:0;font-family:Arial}
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                               <label for="website">Assigned Subjects   </label>
-                              <div style="float:right;"> <?php echo $row['tqual'] ?></div>
+                              <div style="float:right;"> <?php echo $_SESSION['subname'];?><div>
                           </div>
                         </div>
 
