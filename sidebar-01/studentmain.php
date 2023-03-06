@@ -42,7 +42,7 @@ if(!isset($_SESSION["LoginUser"])){
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Course</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
               <li>
-                    <a href="studentcourse.php">Your Course</a>
+                    <a href="studentcourse.php?id=<?php echo $_SESSION['LoginUser'];?>">Your Course</a>
                 </li>
                 <li>
                     <a href="#">Page 2</a>

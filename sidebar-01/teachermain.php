@@ -75,6 +75,22 @@ $result = $conn->query($sql);
 	          <li>
               <a href="teacherleave.php?id=<?php   echo $_SESSION['LoginUser'];?> `">Leave</a>
 	          </li>
+
+	          <li>
+              <a href="#assignmet" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Assignment</a>
+              <ul class="collapse list-unstyled" id="assignment">
+                <li>
+                    <a href="">Assignment Scheduler</a>
+                </li>
+                <li>
+                    <a href="">Material Upload  </a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+              </ul>
+	          </li>
+
 	          <li>
             <a href="#testmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tools</a>
               <ul class="collapse list-unstyled" id="testmenu">

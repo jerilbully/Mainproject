@@ -111,7 +111,7 @@
         </nav>
 
         <h2 class="mb-4">Subject Details</h2>
-        <button class="button1" ><a style="color:red;" href="addsubject.php"> ADD Subject</a></button>
+        <button class="button1" ><a style="color:red;" href="addsubjectteacher.php"> Assign Teacher</a></button>
         <?php
 $servername = "localhost";
     $username = "root";
@@ -131,31 +131,36 @@ if ($conn->connect_error) {
  ?>
  <br> <br> <br>
  <table style="margin-left:20px;">
-
-  <tr>
-     <th>SUBJECT ID</th>
+ <tr>
+     <th>TEACHER NAME</th>
      <th>SUBJECT</th>
      <th>BATCH</th>
      <th>SEMESTER</th>
      
   </tr>
-  <?php
-    $sql1 = "SELECT * from tbl_subject";
+ 
+
+    <?php
+    $sql1 = "SELECT * from tbl_subjteacher";
     $result1 = $conn->query($sql1);
     
     if ($result1->num_rows > 0) {
     // output data of each row
     while($row = $result1->fetch_assoc()) {
-      $subid= $row['sub_id']; 
-      $subjectname = $row['sub_name']; 
-      $batch=$row['batch_id'];
-      $sem=$row['sem'];
-
+      $teachid = $row['teacherid']; 
+      $subject= $row['subid']; 
       
-      // $sql3 = "SELECT * from tbl_staff where tid = '$teachid'";
-      // $result3 = $conn->query($sql3);
-      // $row3 = $result3->fetch_array();
-      // $teachername = $row3['tname'];
+      $sql2 = "SELECT * from tbl_subject where sub_id = '$subject'";
+      $result2 = $conn->query($sql2);
+      $row2 = $result2->fetch_array();
+      $subjectname = $row2['sub_name']; 
+      $batch = $row2['batch_id']; 
+      $sem = $row2['sem']; 
+
+      $sql3 = "SELECT * from tbl_staff where tid = '$teachid'";
+      $result3 = $conn->query($sql3);
+      $row3 = $result3->fetch_array();
+      $teachername = $row3['tname'];
 
       $sql4 = "SELECT * from tbl_batch where batch_id = '$batch'";
       $result4 = $conn->query($sql4);
@@ -168,7 +173,7 @@ if ($conn->connect_error) {
 
 
 <tr>
-  <td><?php echo $subid?></td>
+  <td><?php echo $teachername?></td>
   <td><?php echo $subjectname?></td>
   <td><?php echo $batchname?></td>
   <td><?php echo $sem?></td>
@@ -179,6 +184,7 @@ if ($conn->connect_error) {
 }
 }
   ?>
+
 
 
 <?php mysqli_close($conn);  // close connection ?>

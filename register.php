@@ -37,6 +37,7 @@ $course=$_REQUEST["course"];
 $hostel=$_REQUEST["hostel"];
 $tenth=$_REQUEST["tenth"];
 $twelth=$_REQUEST["twelth"];
+$total=$tenth+$twelth;
 
 $role = "student";
 
@@ -99,8 +100,9 @@ $name1 = $_FILES['profile_img']['name'];
 						{
 					$log_id=$data['log_id'];
 						}
-					    $sql2= "INSERT INTO `tab_reg`(`stud_id`, `log_id`, `sname`, `sadd`, `sdob`, `sphoneno`, `semail`, `scourse`, `tenth_cer`, `twelth_cer`, `profile_img`, `twelth`, `tenth`, `sstay`, `spass`, `sstage`) VALUES 
-                        ('','$log_id','$sname','$sadd','$sdob','$sphoneno','$semail','$course','$name2','$name3','$name1','$twelth','$tenth','$hostel','$spass','1')";
+                        
+					    $sql2= "INSERT INTO `tab_reg`(`stud_id`, `log_id`, `sname`, `sadd`, `sdob`, `sphoneno`, `semail`, `scourse`, `tenth_cer`, `twelth_cer`, `profile_img`, `twelth`,`tenth`, `total`,`sstay`, `spass`, `sstage`) VALUES 
+                        ('','$log_id','$sname','$sadd','$sdob','$sphoneno','$semail','$course','$name2','$name3','$name1','$twelth','$tenth','$total','$hostel','$spass','1')";
 					   $result2 = mysqli_query($conn, $sql2);
 					}
                     echo "<div style='display: none;'>";
@@ -139,6 +141,7 @@ $name1 = $_FILES['profile_img']['name'];
             
         }
     }
+  
 ?>
 <!DOCTYPE html>
 <html>

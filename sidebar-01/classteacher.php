@@ -21,12 +21,12 @@
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
 		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(adminavatar.jpg);"></a>
-	        <ul class="list-unstyled components mb-5">
+          <ul class="list-unstyled components mb-5">
 	          <li class="active">
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">USERS</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="registeruser.php">Registered Users</a>
+                <a href="teacherupdate.php?id=<?php   echo $_SESSION['LoginUser'];?>">Update Profile </a>
                 </li>
                 <li>
                     <a href="#">Teachers</a>
@@ -36,17 +36,15 @@
                 </li>
 	            </ul>
 	          </li>
-	          <li>
-	              <a href="#">About</a>
-	          </li>
+	         
 	          <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Academic</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="subject.php">Subject</a>
+                    <a href="schedule\viewschedule.php">Academic Calender</a>
                 </li>
                 <li>
-                    <a href="#">Page 2</a>
+                    <a href="material_upload\index.php">Material Upload</a>
                 </li>
                 <li>
                     <a href="#">Page 3</a>
@@ -54,10 +52,37 @@
               </ul>
 	          </li>
 	          <li>
-              <a href="#">test</a>
+              <a href="teacherleave.php?id=<?php   echo $_SESSION['LoginUser'];?> `">Leave</a>
 	          </li>
+
 	          <li>
-              <a href="#">test</a>
+              <a href="#assignmet" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Assignment</a>
+              <ul class="collapse list-unstyled" id="assignment">
+                <li>
+                    <a href="">Assignment Scheduler</a>
+                </li>
+                <li>
+                    <a href="">Material Upload  </a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+              </ul>
+	          </li>
+
+	          <li>
+            <a href="#testmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tools</a>
+              <ul class="collapse list-unstyled" id="testmenu">
+                <li>
+                    <a href="OCR\index.html">OCR</a>
+                </li>
+                <li>
+                    <a href="spell-checker\index.html">Spell Checker</a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+              </ul>
 	          </li>
 	        </ul>
 
@@ -108,8 +133,9 @@
    
 
 <!-- <a href="admin_dashboard.php"><button class="button-54">Dashboard</button></a> -->
+<button class="button1" ><a style="color:white;" href="editclassteacher.php"> EDIT LIST</a></button>
+
   <h1 id="h1">Class Teacher Detail          </h1>
-  
     <?php
     
 $servername = "localhost";
@@ -213,12 +239,12 @@ html {
 <p>Resize the browser window to see the effect.</p> -->
 <br> 
 
-<table style="margin-left:20px;">
+<table style="margin-left:20px; margin: top 20px;">
 
 <tr>
    <th>BATCH</th>
    <th>CLASS TEACHER</th>
-  
+   
    
 </tr>
 <?php
@@ -236,10 +262,7 @@ while($row = $result1->fetch_assoc()) {
   $row2 = $result2->fetch_array();
   $bname =  $row2['batch_name'];
  
-//   $sql3 = "SELECT * from tbl_course where course_id = '$cid'";
-//   $result3 = $conn->query($sql3);
-//   $row3 = $result3->fetch_array();
-//   $cname =  $row3['cousrename'];
+
 
   $sql4 = "SELECT * from tbl_staff where tid = '$ctid'";
   $result4 = $conn->query($sql4);

@@ -5,7 +5,7 @@ session_start();
 //  header("Location:../login.php");
 // }
 include 'connection.php';
-$url_query = $_GET['id'];
+
 ?>
 <html lang="en">
   <head>
@@ -120,7 +120,7 @@ $url_query = $_GET['id'];
    
 </tr>
 <?php
-
+$url_query = $_GET['id'];
 $sql = "SELECT * from tab_reg WHERE sname='$url_query'";
 $result = $conn->query($sql);
 
@@ -129,7 +129,7 @@ if ($result->num_rows > 0) {
 while($row = $result->fetch_assoc()) {
   $id=$row['log_id'];
 
-  $sql1="SELECT * from tbl_student WHERE log_id='$lid'";
+  $sql1="SELECT * from tbl_student WHERE log_id='$id'";
   $result1 = $conn->query($sql1);
   $row1=$result1->fetch_assoc();
   $bid = $row1['batch_id'];
@@ -141,14 +141,32 @@ while($row = $result->fetch_assoc()) {
   $subid = $row2['sub_id'];
 
 
+  $sql3="SELECT * from tbl_subjteacher WHERE subid='$subid'";
+
+  $result3 = $conn->query($sql3);
+  if ($result3->num_rows > 0)
+  {
+    while($row3= $result3->fetch_assoc()) {
+        $teachid=$row3['teacherid'];
+//   echo $teachid;
+
+  $sql4="SELECT * from tbl_staff WHERE tid = '$teachid'";
+  $result4 = $conn->query($sql4);
+  $row4=$result4->fetch_assoc();
+  $tname=$row4['tname'];
+  
+  
+
 ?>
 <tr>
-  <td><?php echo $bname?></td>
+  <td><?php echo $subname?></td>
   <td><?php echo $tname?></td>
  
   
 </tr>
 <?php
+    }
+}
 }
 }
   ?>

@@ -20,8 +20,6 @@ if ($conn->connect_error) {
 $url_query = $_GET['id'];
 
 
- $sql = "SELECT * from tbl_staff where tname ='$url_query'";
- $result = $conn->query($sql);
 
  ?>
 <html>
@@ -198,11 +196,32 @@ body {margin:0;font-family:Arial}
   }
 }
 <?php
+$sql = "SELECT * from tbl_staff where tname ='$url_query'";
+$result = $conn->query($sql);
  if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
+$email= $row['temail'];
+$phoneno=$row['tphoneno'];
+$add=$row['tadd'];
+$doj=$row['tdoj'];
+$name=$row['tname'];
+$qual=$row['tqual'];
+$tid=$row['tid'];
 
- ?>
+$sql1="SELECT * from tbl_subjteacher where teacherid='$tid' ";
+$result1 = $conn->query($sql1);
+$row1 = $result1->fetch_assoc();
+$subid=$row1['subid'];
+
+$sql2="SELECT * from tbl_subject where sub_id='$subid' ";
+$result2 = $conn->query($sql2);
+$row2 = $result2->fetch_assoc();
+$subname=$row2['sub_name'];
+
+ }
+ }
+    ?>
 </style>
 <body style="background-image: linear-gradient( rgb(198, 201, 202),rgb(50, 147, 166));">
     <h1 style="text-align:center;font-family: 'Franklin Gothic Medium', Arial Narrow, 'Arial', sans-serif;font-weight: bolder; margin-top: 5%;"> PROFILE </h1>
@@ -218,7 +237,7 @@ body {margin:0;font-family:Arial}
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
                         </div>
                         
-                        <h5 class="user-name"><?php echo $row['tname'] ?></h5>
+                        <h5 class="user-name"><?php echo $name ?></h5>
                         <h6 class="user-email"></h6>
                     </div>
                     <div class="about">
@@ -240,51 +259,41 @@ body {margin:0;font-family:Arial}
                     <form action="" method="post">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
-                          <label for="website">Email: </label> <div style="float:right"><?php echo $row['temail'] ?></div>
+                          <label for="website">Email: </label> <div style="float:right"><?php echo $email ?></div>
                           </div>
                         </div>
                         <br>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
-                              <label for="website">Phone Number:</label> <div style="float:right;"><?php echo $row['tphoneno'] ?></div>
+                              <label for="website">Phone Number:</label> <div style="float:right;"><?php echo $phoneno ?></div>
                           </div>
                         </div>
                         <BR>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                               <label for="website">Address:     </label>
-                              <div style="float:right;"><?php echo $row['tadd'] ?></div>
+                              <div style="float:right;"><?php echo $add ?></div>
                           </div>
                         </div>`
                         
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                               <label for="website">Date Of Joining:     </label>
-                              <div style="float:right"> <?php echo $row['tdoj'] ?></div>
+                              <div style="float:right"> <?php echo $doj ?></div>
                           </div>
                         </div>
                         <br>    
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                               <label for="website">Qualification:     </label>
-                              <div style="float:right;"> <?php echo $row['tqual'] ?></div>
+                              <div style="float:right;"> <?php echo $qual ?></div>
                           </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                           <div class="form-group">
                               <label for="website">Subjects Taken </label>
-                              <?php 
-                               $s = "SELECT tid from tbl_staff where tname ='$url_query'";
-                               $r = $conn->query($s);
-                             
-                              while($row1 = $result2->fetch_assoc()){
-                              // $a=$row['tid'];
-                              // sql2="SELECT rsub_id from";
-                              $sql1 = "SELECT tblreg.rsubname subnm from tbl_teahersubmap tbsup join tbl_regsup tblreg on(tblreg.rsub_id = tbsup.rsub_id) where ";
-                              $result2 = $conn->query($sql1);
-                              }
-                               ?>
-                              <div style="float:right;"> <?php echo $row['tqual'] ?></div>
+            
+                              <div style="float:right;"> <?php echo $subname?></div>
                           </div>
                         </div>
 
@@ -308,10 +317,7 @@ body {margin:0;font-family:Arial}
         </div>
         </div>
         </div>
-        <?php
- }
- }
-    ?>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
