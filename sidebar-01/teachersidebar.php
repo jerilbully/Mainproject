@@ -24,28 +24,28 @@
                     <a href="schedule\viewschedule.php">Academic Calender</a>
                 </li>
                 <li>
-                    <a href="material_upload\index.php">Material Upload</a>
+                <a href="material_upload\index.php">Material Upload</a>
                 </li>
                 <li>
-                    <a href="#">Page 3</a>
+               
                 </li>
               </ul>
 	          </li>
 	          <li>
-              <a href="teacherleave.php?id=<?php   echo $_SESSION['LoginUser'];?> `">Leave</a>
+              <a href="teacherleave.php?id=<?php echo $_SESSION['LoginUser'];?> `">Leave</a>
 	          </li>
 
 	          <li>
-              <a href="#assignmet" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Assignment</a>
+              <a href="#assignment" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Assignment</a>
               <ul class="collapse list-unstyled" id="assignment">
                 <li>
-                    <a href="">Assignment Scheduler</a>
+                    <a href="assignmentschedule.php?id=<?php   echo $_SESSION['LoginUser'];?>">Assignment Scheduler</a>
                 </li>
                 <li>
-                    <a href="">Material Upload  </a>
+                <a href="assignmentsview.php">Issued Assignments</a>
                 </li>
                 <li>
-                    <a href="#">Page 3</a>
+                
                 </li>
               </ul>
 	          </li>

@@ -35,7 +35,7 @@ if($conn->query($sql) === TRUE)
    {
         echo "updation failed ";
    }
-   header('Location:studentupdate.php?id='.$url_query); 
+   echo"<script>alert('updated sucessfully'); window.location.href='studentmain.php'; </script>";
    echo "Successful inserted";
 
 // else

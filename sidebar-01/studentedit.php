@@ -285,7 +285,7 @@ body {margin:0;font-family:Arial}
                                
                                
                                
-                            <input type="submit" value="Save" name="submit" id="regbtn">
+                            <input type="submit"  value="Save" name="submit" id="regbtn">
                                <a  href="studentmain.php"> Back</a>
                             </div>
                         </div>

@@ -111,7 +111,7 @@ if ($conn->connect_error) {
 <td><a href="documents\<?php echo $row['twelth_cer'] ?>"><?php echo $row['twelth'] ?></a></td>
 <td><a href=""><button style="color:white; background-color:green; width:80px; height:30px;">
 <?php if($row['sstage']==1){
-echo "<span class='badge_active'><a href='?type=status&operation=accept&id=".$row['log_id']."' style='color:white;text-decoration:none;'>Accept</a></span>";
+echo "<span class='badge_active'><a  href='up.php?type=status&operation=accept&id=".$row['log_id']."' style='color:white;text-decoration:none;'>Accept</a></span>";
 }  ?>
 </button ></a>
 <!-- <a href=""><button style="color:white; background-color:green; width:80px; height:30px;">Documents</button></a> -->
@@ -126,7 +126,6 @@ echo "<span class='badge_active'><a href='?type=status&operation=accept&id=".$ro
 <?php
  if(isset($_GET['type']) && $_GET['type']!=''){
   $type=($_GET['type']);
-
   if($type=='status'){
     $operation=($_GET['operation']);
     $id=($_GET['id']);
@@ -134,8 +133,6 @@ echo "<span class='badge_active'><a href='?type=status&operation=accept&id=".$ro
     if($operation=='accept'){
       $status='0';
     }
-    
-  
     $update_status="UPDATE tab_reg set sstage='$status'where log_id='$id'";
     mysqli_query($conn,$update_status);
     $update_status1="UPDATE tbl_login set sstatus='$status'where log_id='$id'";
@@ -143,15 +140,10 @@ echo "<span class='badge_active'><a href='?type=status&operation=accept&id=".$ro
 
     $sql1="INSERT INTO `tbl_student`(`stud_id`, `log_id`, `batch_id`) VALUES ('','$id','1')";
     mysqli_query($conn,$sql1);
-   
     
-
   }
-  
+
 }        
-
-
-
 ?>
 
 <?php mysqli_close($conn);  // close connection ?>
@@ -166,5 +158,11 @@ echo "<span class='badge_active'><a href='?type=status&operation=accept&id=".$ro
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      function check(){
+        window.location("http://localhost/smartacademy/sidebar-01/registeruser.php");
+        return true;
+      }
+    </script>
   </body>
 </html>
