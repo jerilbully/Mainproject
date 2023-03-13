@@ -85,14 +85,21 @@ if (isset($_POST['submit'])) {
             <div class="col-sm-12">
               <p>Back to Home page <a href="assignmentsview.php">back</a>.
 
-            <div class="col-sm-12 form-group mb-0">
+            <div class="col-sm-6 form-group mb-0">
                <input type="submit" name="submit" id="submit" value="UPDATE">
+            </div>
+            <div class="col-sm-6 form-group mb-0">
+               <input type="submit" name="submit1" id="submit1" value="DELETE">
             </div>
             
         </div>
         </form>
     </div>
     <script>
+        var today = new Date().toISOString().slice(0, 16);
+        document.getElementsByName("fromdate")[0].min = today;
+        document.getElementsByName("todate")[0].min = today;
+
     //create new instance of the function
     const myForm = new octaValidate('form1');
     //listen for submit event

@@ -45,7 +45,7 @@
                 <a href="assignmentsview.php">Issued Assignments</a>
                 </li>
                 <li>
-                
+                <a href="assignmentanswer.php">Student Uploads</a>
                 </li>
               </ul>
 	          </li>
@@ -55,6 +55,21 @@
               <ul class="collapse list-unstyled" id="testmenu">
                 <li>
                     <a href="OCR\index.html">OCR</a>
+                </li>
+                <li>
+                    <a href="spell-checker\index.html">Spell Checker</a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+              </ul>
+	          </li>
+
+            <li>
+            <a href="#markmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Marks</a>
+              <ul class="collapse list-unstyled" id="markmenu">
+                <li>
+                    <a href="inputmark.php">Input Mark</a>
                 </li>
                 <li>
                     <a href="spell-checker\index.html">Spell Checker</a>

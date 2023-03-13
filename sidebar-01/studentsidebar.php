@@ -24,7 +24,7 @@
                     <a href="studentcourse.php?id=<?php echo $_SESSION['LoginUser'];?>">Your Course</a>
                 </li>
                 <li>
-                    <a href="#">Page 2</a>
+                    <a href="studentassign.php?id=<?php echo $_SESSION['LoginUser'];?>">Assignments</a>
                 </li>
                 <li>
                     <a href="#">Page 3</a>

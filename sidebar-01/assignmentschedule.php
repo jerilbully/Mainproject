@@ -119,6 +119,10 @@ if (isset($_POST['submit'])) {
         </form>
     </div>
     <script>
+        var today = new Date().toISOString().slice(0, 16);
+        document.getElementsByName("fromdate")[0].min = today;
+        document.getElementsByName("todate")[0].min = today;
+
     //create new instance of the function
     const myForm = new octaValidate('form1');
     //listen for submit event

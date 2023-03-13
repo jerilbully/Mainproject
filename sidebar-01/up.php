@@ -1,5 +1,10 @@
 <?php
-
+ use PHPMailer\PHPMailer\PHPMailer;
+ use PHPMailer\PHPMailer\SMTP;
+ use PHPMailer\PHPMailer\Exception;
+ 
+    //Load Composer's autoloader
+    require './vendor/autoload.php';
 $servername = "localhost";
     $username = "root";
     $password = "";
@@ -19,6 +24,32 @@ if ($conn->connect_error) {
 
 
  if(isset($_GET['type']) && $_GET['type']!=''){
+  $mail_id=($_GET['mail_id']);
+  $mail = new PHPMailer(true);
+  try {
+      //Server settings
+      $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+      $mail->isSMTP();                                            //Send using SMTP
+      $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+      $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+      $mail->Username   = 'smartacademy416@gmail.com';                     //SMTP username
+      $mail->Password   = 'rtjmcxzfbtxuksoi';                                 //SMTP password
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+      $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+      //Recipients
+      $mail->setFrom('smartacademy416@gmail.com');
+      $mail->addAddress($mail_id);
+
+      //Content
+      $mail->isHTML(true);                                  //Set email format to HTML
+      $mail->Subject = 'no reply';
+      $mail->Body    = 'Application has been accepted';
+      $mail->send();
+      echo 'Message has been sent';
+  } catch (Exception $e) {
+      echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+  }
   $type=($_GET['type']);
   if($type=='status'){
     $operation=($_GET['operation']);

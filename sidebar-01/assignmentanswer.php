@@ -1,28 +1,8 @@
 <?php
-
  session_start();
  if(!isset($_SESSION["LoginUser"])){
   header("Location:../login.php");
  }
-
-
-    //Load Composer's autoloader
-     require './vendor/autoload.php';
-     $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "super_academy";
- 
- // Create connection
-$conn = new mysqli($servername,
-    $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: "
-        . $conn->connect_error);
-}
-
 ?>
 <html lang="en">
   <head>
@@ -38,7 +18,7 @@ if ($conn->connect_error) {
   <body>
 		
 		<div class="wrapper d-flex align-items-stretch">
-    <?php include 'hodsidebar.php'; ?>
+        <?php include 'teachersidebar.php'; ?>
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5">
@@ -57,7 +37,7 @@ if ($conn->connect_error) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
               <li class="nav-item">
-                    <a class="nav-link" href="index.php">HOME</a>
+                    <!-- <a class="nav-link" href="teach.php">HOME</a> -->
                 </li>  
               <li class="nav-item active">
                     <a class="nav-link" href="/smartacademy/logout.php">LOGOUT</a>
@@ -80,46 +60,48 @@ if ($conn->connect_error) {
    
 
 <!-- <a href="admin_dashboard.php"><button class="button-54">Dashboard</button></a> -->
-  <h1 id="h1">Users Detail</h1><br> <br>
-  <button type="submit" class="btn btn-primary" name="submit" style="background-color: #29a329; color: white;" onclick="window.location.href = 'decm_excel.php';" > Download  </button>
-
+  <h1 id="h1">Assigment History</h1><br> <br>
+  <!-- <button type="submit" class="btn btn-primary" name="submit" style="background-color: #29a329; color: white;" onclick="window.location.href = 'decm_excel.php';" > Download  </button> -->
+<!-- <?php
+session_start();
+?>   -->
     <?php
+$servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "super_academy";
+ 
+ // Create connection
+$conn = new mysqli($servername,
+    $username, $password, $dbname);
 
- $sql = "SELECT * from tab_reg WHERE sstage='1' order by total desc";
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: "
+        . $conn->connect_error);
+}
+ $sql = "SELECT * from tbl_assignment WHERE status='1'";
  $result = $conn->query($sql);
  ?>
  <br> <br> <br>
  <table style="margin-left:20px;">
 
   <tr>
-     <th>NAME</th>
-     <th>EMAIL</th>
-     <th>ADDRESS</th>
-     <th>DOB</th>
-     <th>MODE</th>
-     <th>10th Mark</th>
-     <th>12th Mark</th>
-     <th colspan="2">Action</th>
+     <th>Title</th>
+     <th>Student Upload</th>
   </tr>
  <?php
  if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
+    $assid=$row['assig_id'];
  ?>
   <tr>
-<td><?php echo $row['sname'] ?></td>
-<td><?php echo $row['semail'] ?></td>
-<td><?php echo $row['sadd'] ?></td>
-<td><?php echo $row['sdob'] ?></td> 
-<td><?php echo $row['sstay'] ?></td>
-<td><a href="documents\<?php echo $row['tenth_cer'] ?>"><?php echo $row['tenth'] ?></a></td>
-<td><a href="documents\<?php echo $row['twelth_cer'] ?>"><?php echo $row['twelth'] ?></a></td>
-<td><a href=""><button style="color:white; background-color:green; width:80px; height:30px;">
-<?php if($row['sstage']==1){
-echo "<span class='badge_active'><a  href='up.php?type=status&operation=accept&id=".$row['log_id']."&mail_id=".$row['semail']."' style='color:white;text-decoration:none;'>Accept</a></span>";
-}  ?>
+<td><?php echo $row['title'] ?></td>
+<td><a href="viewpaper.php?id=<?php echo $assid;?>"><button style="color:white; background-color:green; width:80px; height:30px;">
+View 
 </button ></a>
-<!-- <a href=""><button style="color:white; background-color:green; width:80px; height:30px;">Documents</button></a> -->
+
 </td>
   </tr>
  <?php
@@ -128,6 +110,28 @@ echo "<span class='badge_active'><a  href='up.php?type=status&operation=accept&i
     ?>
 
 </table>
+<?php
+ if(isset($_GET['type']) && $_GET['type']!=''){
+  $type=($_GET['type']);
+  if($type=='status'){
+    $operation=($_GET['operation']);
+    $id=($_GET['id']);
+
+    if($operation=='accept'){
+      $status='0';
+    }
+    $update_status="UPDATE tab_reg set sstage='$status'where log_id='$id'";
+    mysqli_query($conn,$update_status);
+    $update_status1="UPDATE tbl_login set sstatus='$status'where log_id='$id'";
+    mysqli_query($conn,$update_status1);
+
+    $sql1="INSERT INTO `tbl_student`(`stud_id`, `log_id`, `batch_id`) VALUES ('','$id','1')";
+    mysqli_query($conn,$sql1);
+    
+  }
+
+}        
+?>
 
 <?php mysqli_close($conn);  // close connection ?>
 <br><br>

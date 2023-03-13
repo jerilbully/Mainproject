@@ -1,0 +1,77 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Admission No</th>
+      <th>-Address</th>
+
+      
+   
+    </tr>
+  </thead>
+  <tbody>
+        <tr>
+      <td>Jubin M</td>
+      <td><br />
+<b>Warning</b>:  Undefined array key "admno" in <b>C:\xampp\htdocs\smartacademy\sidebar-01\decm_excel.php</b> on line <b>47</b><br />
+</td>
+      <td>Jathanthara</td>
+      
+        <tr>
+      <td>Rincy Reji</td>
+      <td><br />
+<b>Warning</b>:  Undefined array key "admno" in <b>C:\xampp\htdocs\smartacademy\sidebar-01\decm_excel.php</b> on line <b>47</b><br />
+</td>
+      <td>Pathanamthitta</td>
+      
+        <tr>
+      <td>Alen Toms</td>
+      <td><br />
+<b>Warning</b>:  Undefined array key "admno" in <b>C:\xampp\htdocs\smartacademy\sidebar-01\decm_excel.php</b> on line <b>47</b><br />
+</td>
+      <td>Pallakad</td>
+      
+        <tr>
+      <td>Sonu Mariam</td>
+      <td><br />
+<b>Warning</b>:  Undefined array key "admno" in <b>C:\xampp\htdocs\smartacademy\sidebar-01\decm_excel.php</b> on line <b>47</b><br />
+</td>
+      <td>mundakayam</td>
+      
+        <tr>
+      <td>Jefine Jospeh</td>
+      <td><br />
+<b>Warning</b>:  Undefined array key "admno" in <b>C:\xampp\htdocs\smartacademy\sidebar-01\decm_excel.php</b> on line <b>47</b><br />
+</td>
+      <td>Kozhikode</td>
+      
+        <tr>
+      <td>Jithin Raj</td>
+      <td><br />
+<b>Warning</b>:  Undefined array key "admno" in <b>C:\xampp\htdocs\smartacademy\sidebar-01\decm_excel.php</b> on line <b>47</b><br />
+</td>
+      <td>Balaraapuram</td>
+      
+        <tr>
+      <td>Alan Joseph</td>
+      <td><br />
+<b>Warning</b>:  Undefined array key "admno" in <b>C:\xampp\htdocs\smartacademy\sidebar-01\decm_excel.php</b> on line <b>47</b><br />
+</td>
+      <td>Kottayam</td>
+      
+        <tr>
+      <td>Leo Joseph</td>
+      <td><br />
+<b>Warning</b>:  Undefined array key "admno" in <b>C:\xampp\htdocs\smartacademy\sidebar-01\decm_excel.php</b> on line <b>47</b><br />
+</td>
+      <td>Erumeli</td>
+      
+        <tr>
+      <td>Sreeja Vijyakumar</td>
+      <td><br />
+<b>Warning</b>:  Undefined array key "admno" in <b>C:\xampp\htdocs\smartacademy\sidebar-01\decm_excel.php</b> on line <b>47</b><br />
+</td>
+      <td>Manimala</td>
+      
+      </tbody>
+</table>

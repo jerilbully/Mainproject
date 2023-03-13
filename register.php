@@ -10,7 +10,7 @@ session_start();
         die();
     }
     //Load Composer's autoloader
-    // require 'vendor/autoload.php';
+     require 'sidebar-01/vendor/autoload.php';
 
  $servername = "localhost";
   $username = "root";
