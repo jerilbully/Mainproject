@@ -11,9 +11,9 @@
                 <li>
                     <a href="hodteacher.php">Teachers</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="studentview.php">Students</a>
-                </li>
+                </li> -->
 	            </ul>
 	          </li>
           <li>  

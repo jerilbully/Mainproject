@@ -36,12 +36,12 @@
                 <label for="email">Email</label>
                 <input type="email" class="form-control" name="temail" id="email" placeholder="Enter your email." octavalidate="R,DIGITS">
             </div>
-            <div class="col-sm-6 form-group">
+            <!-- <div class="col-sm-6 form-group">
                 <label for="address">Qualification</label>
                 <input type="textarea" class="form-control" name="tqual" id="address" placeholder="Qualification" >
-            </div>
+            </div> -->
             <div class="col-sm-6 form-group">
-                <label for="address">Subject 1</label>
+                <label for="address">Qualification</label>
                 <input type="textarea" class="form-control" name="tqual" id="address" placeholder="Qualification" >
             </div>
             

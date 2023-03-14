@@ -70,7 +70,8 @@ if ($conn->connect_error) {
 											
                                             $sql2="SELECT * FROM tbl_staff WHERE tbl_staff.tid NOT IN (SELECT tid FROM tbl_classteacher)";
                                             $result2 = $conn->query($sql2);
-                                            $row2 = $result2->fetch_array();
+                                            // $row2 = $result2->fetch_array();
+                                            while($row2=mysqli_fetch_array($result2)) {
                                             $tname =  $row2['tname'];
                                         
                                             ?>
@@ -80,7 +81,7 @@ if ($conn->connect_error) {
                                             </option>
                                             <?php
                                             // }
-                                        // }
+                                        }
                                             ?>
 										</select>
             </div>

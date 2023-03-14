@@ -37,7 +37,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
               <li class="nav-item">
-                    <a class="nav-link" href="index.php">HOME</a>
+                    <a class="nav-link" href="teachermain.php">HOME</a>
                 </li>  
               <li class="nav-item active">
                     <a class="nav-link" href="/smartacademy/logout.php">LOGOUT</a>
@@ -80,7 +80,22 @@ if ($conn->connect_error) {
     die("Connection failed: "
         . $conn->connect_error);
 }
- $sql = "SELECT * from tbl_assignment WHERE status='1'";
+$url_query = $_GET['id'];
+
+$sql1="SELECT * from tbl_staff WHERE tname='$url_query'";
+$result1 = $conn->query($sql1);
+$row1 = $result1->fetch_assoc();
+$tid=$row1['tid'];
+
+$sql2="SELECT * from tbl_subjteacher WHERE teacherid='$tid'";
+$result2 = $conn->query($sql2);
+$row2 = $result2->fetch_assoc();
+if ($result2->num_rows >0){
+// echo "No assigments have been assigned";
+
+$subid=$row2['subid'];
+
+ $sql = "SELECT * from tbl_assignment WHERE status='1' AND subject_id='$subid'";
  $result = $conn->query($sql);
  ?>
  <br> <br> <br>
@@ -113,6 +128,10 @@ Update
   </tr>
  <?php
  }
+ }}
+ else{
+  echo "No assigments have been assigned";
+
  }
     ?>
 

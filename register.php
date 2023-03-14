@@ -127,14 +127,14 @@ $name1 = $_FILES['profile_img']['name'];
                         //Content
                         $mail->isHTML(true);                                  //Set email format to HTML
                         $mail->Subject = 'no reply';
-                        $mail->Body    = 'Here is the verification link <b><a href="http://localhost/smartacademy/login.php?verification='.$code.'">http://localhost/smartacademy/login.php?verification='.$code.'</a></b>';
+                        $mail->Body    = 'We have recieved your application .You will be notified soon on your application <b></b>';
                         $mail->send();
                         echo 'Message has been sent';
                     } catch (Exception $e) {
                         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                     }
                     echo "</div>";
-                    $msg = "<div class='alert alert-info'>We've send a verification link on your email address.</div>";
+                    $msg = "<div class='alert alert-info'>Thank you for applying to Smart Academy.</div>";
                 } else {
                     $msg = "<div class='alert alert-danger'>Something wrong went.</div>";
                 }

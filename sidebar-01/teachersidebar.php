@@ -39,10 +39,10 @@
               <a href="#assignment" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Assignment</a>
               <ul class="collapse list-unstyled" id="assignment">
                 <li>
-                    <a href="assignmentschedule.php?id=<?php   echo $_SESSION['LoginUser'];?>">Assignment Scheduler</a>
+                    <a href="assignmentschedule.php?id=<?php echo $_SESSION['LoginUser'];?>">Assignment Scheduler</a>
                 </li>
                 <li>
-                <a href="assignmentsview.php">Issued Assignments</a>
+                <a href="assignmentsview.php?id=<?php echo $_SESSION['LoginUser'];?>">Issued Assignments</a>
                 </li>
                 <li>
                 <a href="assignmentanswer.php">Student Uploads</a>

@@ -44,7 +44,7 @@ if ($conn->connect_error) {
       //Content
       $mail->isHTML(true);                                  //Set email format to HTML
       $mail->Subject = 'no reply';
-      $mail->Body    = 'Application has been accepted';
+      $mail->Body    = 'your application has been accepted .You can try login now <a href="http://localhost/smartacademy/login.php?verification='.$code.'">http://localhost/smartacademy/login.php?verification='.$code.'</a>';
       $mail->send();
       echo 'Message has been sent';
   } catch (Exception $e) {
