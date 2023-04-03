@@ -73,7 +73,7 @@ if ($conn->connect_error) {
  
  ?>
  <br> <br> <br>
- <table style="margin-left:20px;">
+ <table style="margin-left:20px;" id="subTable">
 
   <tr>
      <th>SUBJECT ID</th>
@@ -128,6 +128,13 @@ if ($conn->connect_error) {
  
       </div>
 		</div>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#subTable').DataTable();
+        } );
+    </script>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>

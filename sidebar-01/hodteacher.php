@@ -18,56 +18,7 @@
   <body>
 		
 		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar">
-				<div class="p-4 pt-5">
-		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(adminavatar.jpg);"></a>
-	        <ul class="list-unstyled components mb-5">
-	          <li class="active">
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">USERS</a>
-	            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="registeruser.php">Registered Users</a>
-                </li>
-                <li>
-                    <a href="#">Teachers</a>
-                </li>
-                <li>
-                    <a href="#">Students</a>
-                </li>
-	            </ul>
-	          </li>
-	          <li>
-	              <a href="#">About</a>
-	          </li>
-	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Academic</a>
-              <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="subject.php">Subject</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-              </ul>
-	          </li>
-	          <li>
-              <a href="#">test</a>
-	          </li>
-	          <li>
-              <a href="#">test</a>
-	          </li>
-	        </ul>
-
-	        <div class="footer">
-	        	<p></p>
-	        </div>
-
-	      </div>
-    	</nav>
-
+    <?php include 'hodsidebar.php'; ?>
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5">
 

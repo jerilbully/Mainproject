@@ -55,7 +55,7 @@ if(!isset($_SESSION["LoginUser"])){
         while($row2 = $result2->fetch_assoc()) {
       $sid=$row2['sub_id'];
       $subname=$row2['sub_name'];
-     echo $sid;
+    //  echo $sid;
       $sql3 = "SELECT * from tbl_assignment where subject_id='$sid'";
       $result3 = $conn->query($sql3);
     //   $row3 = $result3->fetch_assoc();

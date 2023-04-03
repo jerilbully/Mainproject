@@ -27,12 +27,13 @@
                     <a href="studentassign.php?id=<?php echo $_SESSION['LoginUser'];?>">Assignments</a>
                 </li>
                 <li>
-                    <a href="#">Page 3</a>
+                    <a href="viewtimetable.php?id=<?php echo $_SESSION['LoginUser'];?>">TimeTable</a>
                 </li>
+                
               </ul>
 	          </li>
 	          <li>
-              <a href="#">test</a>
+              <a href="viewmmark.php?id=<?php echo $_SESSION['LoginUser'];?>">Marks</a>
 	          </li>
 	          <li>
               <a href="#">test</a>

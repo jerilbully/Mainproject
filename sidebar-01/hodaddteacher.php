@@ -1,17 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-   <meta charset="UTF-8">
-   <script src="validate.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://codepen.io/skjha5993/pen/bXqWpR.css">
-    <title>Smart Academy</title>
+<?php
+ session_start();
+ if(!isset($_SESSION["LoginUser"])){
+  header("Location:../login.php");
+ }
+?>
+<html lang="en">
+  <head>
+  <title>Users list </title>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="table.css"> 
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+    <?php include 'hodsidebar.php'; ?>
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+              <i class="fa fa-bars"></i>
+              <span class="sr-only">Toggle Menu</span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item">
+                    <a class="nav-link" href="index.php">HOME</a>
+                </li>  
+              <li class="nav-item active">
+                    <a class="nav-link" href="/smartacademy/login.php">LOGOUT</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- <h2 class="mb-4"></h2> -->
+
+
+   
+
+<!-- <a href="admin_dashboard.php"><button class="button-54">Dashboard</button></a> -->
+  
+
+
+ 
 </head>
 <body>
- 
-    <div class="container">
+
+<!-- <h2>Responsive "Meet The Team" Section</h2>
+<p>Resize the browser window to see the effect.</p> --
+
+<!-- <div class="row"> -->
+<div class="container">
         <form action="hodaddteacherfunction.php" method="post" id="form1">
             <h2 class="text-center">ADD A TEACHER</h2>
         <div class="row jumbotron">
@@ -78,5 +137,15 @@
         }
     })
 </script>
+</body>
+</html>
 
-</body></html>
+      </div>
+		</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

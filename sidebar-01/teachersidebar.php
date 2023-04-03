@@ -3,7 +3,7 @@
 		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(adminavatar.jpg);"></a>
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">USERS</a>
+	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profile</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
                 <a href="teacherupdate.php?id=<?php   echo $_SESSION['LoginUser'];?>">Update Profile </a>
@@ -69,10 +69,10 @@
             <a href="#markmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Marks</a>
               <ul class="collapse list-unstyled" id="markmenu">
                 <li>
-                    <a href="inputmark.php">Input Mark</a>
+                    <a href="inputmark.php?id=<?php echo $_SESSION['LoginUser'];?>">Input Mark</a>
                 </li>
                 <li>
-                    <a href="spell-checker\index.html">Spell Checker</a>
+                    <a href="viewmark.php?id=<?php echo $_SESSION['LoginUser'];?>">View Mark</a>
                 </li>
                 <li>
                     <a href="#">Page 3</a>

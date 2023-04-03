@@ -139,7 +139,7 @@ if ($conn->connect_error) {
 
  ?>
  <br> <br> <br>
- <table style="margin-left:20px;">
+ <table style="margin-left:20px;" id="student">
 
   <tr>
      <th>NAME</th>
@@ -201,7 +201,8 @@ session_start();
 </body>    
       </div>
 		</div>
-
+   
+ 
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>

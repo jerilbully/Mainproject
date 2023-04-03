@@ -318,8 +318,8 @@ $result6 = $conn->query($sql6);
 ?>
 <tr>
 <td><?php echo $studid?></td>
-<td><?php echo $sname?></td>
 
+<td><a href="hodviewmark.php?id=<?php echo $sname ?>"<?php echo $sname ?>"><?php echo $sname ?></a></td>
 
 </tr>
 <?php

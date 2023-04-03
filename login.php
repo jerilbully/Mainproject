@@ -69,6 +69,7 @@ if (isset($_POST['btn'])){
 			}
 			else if($row["role"] == "teacher")
 			{
+        $_SESSION['log_id']=$row["log_id"];
 				$_SESSION['LoginUser'] = $row["username"];
 				$_SESSION['LoginRole'] = $row["role"];
 				header('Location:sidebar-01/teachermain.php');
@@ -100,7 +101,7 @@ $msg = "<div class='alert alert-danger'>Invalid credentials</div>";
 <html lang="zxx">
 
 <head>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -157,7 +158,7 @@ font-weight:bold;
             </div>
             <span class="error_form" id="captcha_message"></span>
 
-            <div class="g-recaptcha" data-sitekey="6Le1c3ckAAAAACMuBhvVifpLH5xrGBvj4oREAmww"></div>
+            <!-- <div class="g-recaptcha" data-sitekey="6Le1c3ckAAAAACMuBhvVifpLH5xrGBvj4oREAmww"></div> -->
             
             <div class="col-sm-12">
               <p>Dont have account? <a href="register.php">Register here</a>.
